@@ -14,6 +14,14 @@ public class SwordSwing : MonoBehaviour
     }
     void Update()
     {
-        
+        if (Input.GetMouseButtonDown(0)) {
+            Vector2 playerPosition = this.gameObject.transform.parent.transform.position;
+            Vector2 mousePosition = camera.ScreenToWorldPoint(Input.mousePosition);
+            float angleFromPlayerToMouse = Vector2.Angle(new Vector2(0,1), mousePosition - playerPosition);
+            if (mousePosition.x >= playerPosition.x) {
+                angleFromPlayerToMouse *= -1;
+            }
+            this.gameObject.transform.parent.transform.rotation = Quaternion.Euler(0,0,angleFromPlayerToMouse);
+        }
     }
 }
