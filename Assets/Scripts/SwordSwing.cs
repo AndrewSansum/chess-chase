@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
@@ -25,6 +27,24 @@ public class SwordSwing : MonoBehaviour
                 angleFromPlayerToMouse *= -1;
             }
             swordTransform.rotation = Quaternion.Euler(0,0,angleFromPlayerToMouse);
+            StartCoroutine(Swing(90, 1));
         }
+    }
+
+    private IEnumerator Swing(float angle, float time)
+    {
+        Vector3 startAngles = (swordTransform.eulerAngles.z - angle/2) * Vector3.forward;
+        Vector3 endAngles = (swordTransform.eulerAngles.z + angle/2) * Vector3.forward;
+
+        swordTransform.rotation = Quaternion.Euler(startAngles);
+        collider.enabled = true;
+
+        float elapsedTime = 0;
+        while (elapsedTime < time) {
+            swordTransform.rotation = Quaternion.Euler(Vector3.Lerp(startAngles, endAngles, elapsedTime / time));
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        collider.enabled = false;
     }
 }
