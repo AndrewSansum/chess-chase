@@ -11,6 +11,9 @@ public class SwordSwing : MonoBehaviour
 
     private Transform swordTransform;
 
+    public float swingAngle;
+    public float swingTime;
+
     void Start()
     {
         collider = GetComponent<Collider2D>();
@@ -27,7 +30,7 @@ public class SwordSwing : MonoBehaviour
                 angleFromPlayerToMouse *= -1;
             }
             swordTransform.rotation = Quaternion.Euler(0,0,angleFromPlayerToMouse);
-            StartCoroutine(Swing(90, 1));
+            StartCoroutine(Swing(swingAngle, swingTime));
         }
     }
 
