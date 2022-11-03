@@ -14,15 +14,19 @@ public class SwordSwing : MonoBehaviour
     public float swingAngle;
     public float swingTime;
 
+    private bool swingUsed;
+
     void Start()
     {
         collider = GetComponent<Collider2D>();
         collider.enabled = false;
         swordTransform = this.gameObject.transform.parent.transform;
+
+        swingUsed = false;
     }
     void Update()
     {
-        if (Input.GetMouseButtonDown(0)) {
+        if (Input.GetMouseButtonDown(0) && !swingUsed) {
             Vector2 playerPosition = swordTransform.position;
             Vector2 mousePosition = camera.ScreenToWorldPoint(Input.mousePosition);
             float angleFromPlayerToMouse = Vector2.Angle(new Vector2(0,1), mousePosition - playerPosition);
@@ -30,6 +34,7 @@ public class SwordSwing : MonoBehaviour
                 angleFromPlayerToMouse *= -1;
             }
             swordTransform.rotation = Quaternion.Euler(0,0,angleFromPlayerToMouse);
+            swingUsed = true;
             StartCoroutine(Swing(swingAngle, swingTime));
         }
     }
@@ -49,5 +54,6 @@ public class SwordSwing : MonoBehaviour
             yield return null;
         }
         collider.enabled = false;
+        swingUsed = false;
     }
 }
