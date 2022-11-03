@@ -57,7 +57,7 @@ public class SwordSwing : MonoBehaviour
         swingUsed = false;
     }
 
-    void OnTriggerEnter(Collider other) {
+    void OnTriggerEnter2D(Collider2D other) {
         Debug.Log("Sword swing hit something!");
     }
 }
