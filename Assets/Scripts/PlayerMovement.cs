@@ -29,6 +29,8 @@ public class PlayerMovement : MonoBehaviour
         float hComponent = 0;
         float vComponent = 0;
 
+        float stopThreshold = deceleration / 100f;
+
         if (horizontalInput != 0) {
             //turn around with different speed
             if (horizontalInput > 0 && rb.velocity.x < 0) {
@@ -38,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
             } else {
                 hComponent = acceleration * horizontalInput;
             }
-        } else if (Mathf.Abs(rb.velocity.x) >= 0.3) {
+        } else if (Mathf.Abs(rb.velocity.x) >= stopThreshold) {
             //only decelerate if above a certain velocity
             if (rb.velocity.x > 0) {
                 hComponent = deceleration * -1;
@@ -59,7 +61,7 @@ public class PlayerMovement : MonoBehaviour
             } else {
                 vComponent = acceleration * verticalInput;
             }
-        } else if (Mathf.Abs(rb.velocity.y) >= 0.3) {
+        } else if (Mathf.Abs(rb.velocity.y) >= stopThreshold) {
             //only decelerate if above a certain velocity
             if (rb.velocity.y > 0) {
                 vComponent = deceleration * -1;
