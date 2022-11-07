@@ -36,6 +36,26 @@ public class EnemyGrid : MonoBehaviour
         }        
     }
 
+    public GridValue GetGridValue(int x, int y) {
+        return grid[x,y];
+    }
+
+    public bool ReserveGridCell(int x, int y, Object reserver) {
+        GridValue cell = grid[x, y];
+        if (cell.IsEmpty()) {
+            cell.SetReserved(reserver.GetInstanceID());
+            return true;
+        } else {
+            return false;
+        }           
+    }
+
+    public void ReleaseReservation(int x, int y, Object reserver) {
+        GridValue cell = grid[x, y];
+        if (cell.IsReserved() && cell.GetValue() == reserver.GetInstanceID()) {
+            cell.SetEmpty();
+        }
+    }
 }
 
 public class GridValue
