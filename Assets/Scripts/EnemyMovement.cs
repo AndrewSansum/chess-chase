@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class EnemyMovement : MonoBehaviour
 {
-    protected Vector2Int position;
+    public Vector2Int position;
     public EnemyGrid grid;
 
     public virtual void Init() {

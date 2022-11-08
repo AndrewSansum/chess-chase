@@ -63,7 +63,7 @@ public class EnemyGrid : MonoBehaviour
     }
 
     public Vector3 CellToWorld(Vector2Int cellPosition) {
-        return tilemap.WorldToCell(new Vector3Int(cellPosition.x, cellPosition.y, 0));
+        return tilemap.CellToWorld(new Vector3Int(cellPosition.x + xOffset, cellPosition.y + yOffset, 0));
     }
 }
 
