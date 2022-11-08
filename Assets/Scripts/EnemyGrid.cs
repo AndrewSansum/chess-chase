@@ -59,8 +59,6 @@ public class EnemyGrid : MonoBehaviour
 
     public Vector2Int WorldToCell(Vector3 worldPosition) {
         Vector3Int tilemapPosition = tilemap.WorldToCell(worldPosition);
-        Debug.Log(worldPosition);
-        Debug.Log(tilemapPosition);
         return new Vector2Int(tilemapPosition.x - xOffset, tilemapPosition.y - yOffset);
     }
 }
