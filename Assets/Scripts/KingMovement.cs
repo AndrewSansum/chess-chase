@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class KingMovement : EnemyMovement
 {
-    protected override void Start() {
-        base.Start();
-    }
     public override List<Vector2Int> GetTraversableCells()
     {
         int minX = (position.x > 0) ? position.x - 1 : 0;
