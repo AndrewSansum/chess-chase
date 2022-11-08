@@ -10,8 +10,8 @@ public class EnemyGrid : MonoBehaviour
 
     private int xOffset;
     private int yOffset;
-    private int xSize;
-    private int ySize;
+    public int XSize {get; private set;}
+    public int YSize {get; private set;}
 
     private GridValue[,] grid;
 
@@ -21,12 +21,12 @@ public class EnemyGrid : MonoBehaviour
         BoundsInt tileBounds = tilemap.cellBounds;
         xOffset = tileBounds.xMin;
         yOffset = tileBounds.yMin;
-        xSize = tileBounds.xMax - tileBounds.xMin;
-        ySize = tileBounds.yMax - tileBounds.yMin;
-        grid = new GridValue[xSize,ySize];
-        for (int x = 0; x < xSize; x++)
+        XSize = tileBounds.xMax - tileBounds.xMin;
+        YSize = tileBounds.yMax - tileBounds.yMin;
+        grid = new GridValue[XSize,YSize];
+        for (int x = 0; x < XSize; x++)
         {
-            for (int y = 0; y < ySize; y++) 
+            for (int y = 0; y < YSize; y++) 
             {
                 grid[x, y] = new GridValue();
                 if (!tilemap.HasTile(new Vector3Int(x + xOffset, y + yOffset, 0))) {
@@ -55,6 +55,13 @@ public class EnemyGrid : MonoBehaviour
         if (cell.IsReserved() && cell.GetValue() == reserver.GetInstanceID()) {
             cell.SetEmpty();
         }
+    }
+
+    public Vector2Int WorldToCell(Vector3 worldPosition) {
+        Vector3Int tilemapPosition = tilemap.WorldToCell(worldPosition);
+        Debug.Log(worldPosition);
+        Debug.Log(tilemapPosition);
+        return new Vector2Int(tilemapPosition.x - xOffset, tilemapPosition.y - yOffset);
     }
 }
 
