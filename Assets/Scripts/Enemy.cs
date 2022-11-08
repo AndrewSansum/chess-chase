@@ -38,21 +38,25 @@ public class Enemy : MonoBehaviour
         }
 
         if (moveAvailable && !moving) {
-            Queue<Vector2Int> newQueue = mover.GetPathToCell(ChooseNextCell(mover.GetTraversableCells()));
-            bool free = true;
-            foreach (var cell in newQueue) {
-                if (!grid.GetGridValue(cell.x, cell.y).IsEmpty()) {
-                    free = false;
+            var possibleCells = mover.GetTraversableCells();
+            if (possibleCells.Count > 0) {
+                Queue<Vector2Int> newQueue = mover.GetPathToCell(ChooseNextCell(possibleCells));
+                bool free = true;
+                foreach (var cell in newQueue) {
+                    if (!grid.GetGridValue(cell.x, cell.y).IsEmpty()) {
+                        free = false;
+                    } 
+                }
+                
+                if (free) {
+                    moveQueue = newQueue;
+                    foreach (var cell in moveQueue) {
+                        grid.ReserveGridCell(cell.x, cell.y, this);
+                    }
+                    moveAvailable = false;
                 } 
             }
-            
-            if (free) {
-                moveQueue = newQueue;
-                foreach (var cell in moveQueue) {
-                    grid.ReserveGridCell(cell.x, cell.y, this);
-                }
-                moveAvailable = false;
-            }   
+              
         }
     }
 
