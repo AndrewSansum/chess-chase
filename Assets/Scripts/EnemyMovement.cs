@@ -14,4 +14,8 @@ public abstract class EnemyMovement : MonoBehaviour
     public abstract List<Vector2Int> GetTraversableCells();
 
     public abstract Queue<Vector2Int> GetPathToCell(Vector2Int cellPosition);
+
+    public Vector2Int GetPosition() {
+        return new Vector2Int(position.x, position.y);
+    }
 }

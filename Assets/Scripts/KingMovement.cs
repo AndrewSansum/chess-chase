@@ -6,7 +6,6 @@ public class KingMovement : EnemyMovement
 {
     protected override void Start() {
         base.Start();
-        GetTraversableCells();
     }
     public override List<Vector2Int> GetTraversableCells()
     {
