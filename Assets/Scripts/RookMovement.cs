@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RookMovement : EnemyMovement
 {
-    public override List<Vector2Int> GetTraversableCells() {
+    private List<Vector2Int> GetTraversableCells() {
         List<Vector2Int> cells = new List<Vector2Int>();
 
         int leftMost = -1;
@@ -79,5 +79,29 @@ public class RookMovement : EnemyMovement
         }
 
         return cells;
+    }
+
+    public override Vector2Int? ChooseNextCell(Vector3 playerPosition) {
+        Vector2Int relativePlayerPosition = grid.WorldToCell(playerPosition) - position;
+
+        List<Vector2Int> traversableCells = GetTraversableCells();
+
+        if (traversableCells.Count > 0) {
+            Vector2Int bestCell = traversableCells[0];
+            float bestAngle = Vector2.Angle(relativePlayerPosition, bestCell);
+
+            foreach (var cell in traversableCells) {
+                Vector2Int relativeCellPosition = cell - position;
+                float angle = Vector2.Angle(relativePlayerPosition, relativeCellPosition);
+                if (angle < bestAngle) {
+                    bestCell = cell;
+                    bestAngle = angle;
+                }
+            }
+
+            return bestCell;
+        } else {
+            return null;
+        }  
     }
 }
