@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     public float turnSpeed;
 
     private Rigidbody2D rb;
+    public Animator animator;
 
     private float horizontalInput;
     private float verticalInput;
@@ -23,6 +24,10 @@ public class PlayerMovement : MonoBehaviour
     {
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
+
+        animator.SetFloat("Horizontal", horizontalInput);
+        animator.SetFloat("Vertical", verticalInput);
+        animator.SetFloat("Speed", rb.velocity.sqrMagnitude);
     }
 
     void FixedUpdate() {
