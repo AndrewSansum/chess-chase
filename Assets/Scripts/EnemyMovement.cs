@@ -11,9 +11,9 @@ public abstract class EnemyMovement : MonoBehaviour
         position = grid.WorldToCell(this.gameObject.transform.position);
     }
 
-    public abstract List<Vector2Int> GetTraversableCells();
-
     public abstract Queue<Vector2Int> GetPathToCell(Vector2Int cellPosition);
+
+    public abstract Vector2Int? ChooseNextCell(Vector3 playerPosition);
 
     public Vector2Int GetPosition() {
         return position;

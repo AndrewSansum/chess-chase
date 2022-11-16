@@ -38,9 +38,9 @@ public class Enemy : MonoBehaviour
         }
 
         if (moveAvailable && !moving) {
-            var possibleCells = mover.GetTraversableCells();
-            if (possibleCells.Count > 0) {
-                Queue<Vector2Int> newQueue = mover.GetPathToCell(ChooseNextCell(possibleCells));
+            Vector2Int? nextCell = mover.ChooseNextCell(playerTransform.position);
+            if (nextCell.HasValue) {
+                Queue<Vector2Int> newQueue = mover.GetPathToCell(nextCell.Value);
                 bool free = true;
                 foreach (var cell in newQueue) {
                     if (!grid.GetGridValue(cell.x, cell.y).IsEmpty()) {
@@ -76,23 +76,5 @@ public class Enemy : MonoBehaviour
         tf.position = targetPosition;
         moving = false;
         mover.position = cell;
-    }
-
-    public Vector2Int ChooseNextCell(List<Vector2Int> traversableCells) {
-        Vector2Int relativePlayerPosition = grid.WorldToCell(playerTransform.position) - mover.GetPosition();
-
-        Vector2Int bestCell = traversableCells[0];
-        float bestAngle = Vector2.Angle(relativePlayerPosition, bestCell);
-
-        foreach (var cell in traversableCells) {
-            Vector2Int relativeCellPosition = cell - mover.GetPosition();
-            float angle = Vector2.Angle(relativePlayerPosition, relativeCellPosition);
-            if (angle < bestAngle) {
-                bestCell = cell;
-                bestAngle = angle;
-            }
-        }
-
-        return bestCell;
     }
 }
