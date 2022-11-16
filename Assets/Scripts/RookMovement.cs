@@ -9,7 +9,6 @@ public class RookMovement : EnemyMovement
 
         for (int x = position.x - 1; x >= 0; x--) {
             if (grid.GetGridValue(x, position.y).IsEmpty()) {
-                Debug.Log(new Vector2Int(x, position.y));
                 cells.Add(new Vector2Int(x, position.y));
             } else {
                 break;
@@ -18,7 +17,6 @@ public class RookMovement : EnemyMovement
 
         for (int x = position.x + 1; x < grid.XSize; x++) {
             if (grid.GetGridValue(x, position.y).IsEmpty()) {
-                Debug.Log(new Vector2Int(x, position.y));
                 cells.Add(new Vector2Int(x, position.y));
             } else {
                 break;
@@ -27,7 +25,6 @@ public class RookMovement : EnemyMovement
 
         for (int y = position.y + 1; y < grid.YSize; y++) {
             if (grid.GetGridValue(position.x, y).IsEmpty()) {
-                Debug.Log(new Vector2Int(position.x, y));
                 cells.Add(new Vector2Int(position.x, y));
             } else {
                 break;
@@ -36,7 +33,6 @@ public class RookMovement : EnemyMovement
 
         for (int y = position.y - 1; y >= 0; y--) {
             if (grid.GetGridValue(position.x, y).IsEmpty()) {
-                Debug.Log(new Vector2Int(position.x, y));
                 cells.Add(new Vector2Int(position.x, y));
             } else {
                 break;
@@ -71,14 +67,12 @@ public class RookMovement : EnemyMovement
 
     public override Vector2Int? ChooseNextCell(Vector3 playerPosition) {
         Vector2Int playerCell = grid.WorldToCell(playerPosition);
-        Debug.Log("Player cell: " + playerCell.ToString());
 
         Vector2Int relativePlayerPosition = playerCell - position;
 
         List<Vector2Int> traversableCells = GetTraversableCells();
 
         if (traversableCells.Count <= 0) {
-            Debug.Log("None traversable");
             return null;
         }
 
@@ -95,10 +89,8 @@ public class RookMovement : EnemyMovement
                 return new Vector2Int(Mathf.Max(playerCell.x - 2, 0), position.y);
             }
         } else {
-            Debug.Log("Not in line");
             List<Vector2Int> optimalCells = traversableCells.FindAll(cell => cell.y == playerCell.y || cell.x == playerCell.x);
             if (optimalCells.Count > 0) {
-                Debug.Log("Found in line");
                 // Get cell with minimum travel distance 
                 // 
                 // i.e. 
@@ -110,7 +102,6 @@ public class RookMovement : EnemyMovement
                         )
                     ); 
             } else {
-                Debug.Log("Random");
                 return traversableCells[Mathf.RoundToInt(Random.Range(0, traversableCells.Count - 1))];
             }
             
