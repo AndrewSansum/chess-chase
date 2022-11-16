@@ -7,52 +7,40 @@ public class RookMovement : EnemyMovement
     private List<Vector2Int> GetTraversableCells() {
         List<Vector2Int> cells = new List<Vector2Int>();
 
-        int leftMost = -1;
-        for (int x = position.x; x >= 0; x--) {
-            if (!grid.GetGridValue(x, position.y).IsEmpty()) {
-                continue;
+        for (int x = position.x - 1; x >= 0; x--) {
+            if (grid.GetGridValue(x, position.y).IsEmpty()) {
+                Debug.Log(new Vector2Int(x, position.y));
+                cells.Add(new Vector2Int(x, position.y));
+            } else {
+                break;
             }
-
-            leftMost = x;
-        }
-        if (leftMost > -1) {
-            cells.Add(new Vector2Int(leftMost, position.y));
         }
 
-        int rightMost = -1;
-        for (int x = position.x; x < grid.XSize; x++) {
-            if (!grid.GetGridValue(x, position.y).IsEmpty()) {
-                continue;
+        for (int x = position.x + 1; x < grid.XSize; x++) {
+            if (grid.GetGridValue(x, position.y).IsEmpty()) {
+                Debug.Log(new Vector2Int(x, position.y));
+                cells.Add(new Vector2Int(x, position.y));
+            } else {
+                break;
             }
-
-            rightMost = x;
-        }
-        if (rightMost > -1) {
-            cells.Add(new Vector2Int(rightMost, position.y));
         }
 
-        int upMost = -1;
-        for (int y = position.y; y < grid.YSize; y++) {
-            if (!grid.GetGridValue(position.x, y).IsEmpty()) {
-                continue;
+        for (int y = position.y + 1; y < grid.YSize; y++) {
+            if (grid.GetGridValue(position.x, y).IsEmpty()) {
+                Debug.Log(new Vector2Int(position.x, y));
+                cells.Add(new Vector2Int(position.x, y));
+            } else {
+                break;
             }
-
-            upMost = y;
-        }
-        if (upMost > -1) {
-            cells.Add(new Vector2Int(position.x, upMost));
         }
 
-        int downMost = -1;
-        for (int y = position.y; y >= 0; y--) {
-            if (!grid.GetGridValue(position.x, y).IsEmpty()) {
-                continue;
+        for (int y = position.y - 1; y >= 0; y--) {
+            if (grid.GetGridValue(position.x, y).IsEmpty()) {
+                Debug.Log(new Vector2Int(position.x, y));
+                cells.Add(new Vector2Int(position.x, y));
+            } else {
+                break;
             }
-
-            downMost = y;
-        }
-        if (downMost > -1) {
-            cells.Add(new Vector2Int(position.x, downMost));
         }
 
         return cells;
@@ -82,26 +70,50 @@ public class RookMovement : EnemyMovement
     }
 
     public override Vector2Int? ChooseNextCell(Vector3 playerPosition) {
-        Vector2Int relativePlayerPosition = grid.WorldToCell(playerPosition) - position;
+        Vector2Int playerCell = grid.WorldToCell(playerPosition);
+        Debug.Log("Player cell: " + playerCell.ToString());
+
+        Vector2Int relativePlayerPosition = playerCell - position;
 
         List<Vector2Int> traversableCells = GetTraversableCells();
 
-        if (traversableCells.Count > 0) {
-            Vector2Int bestCell = traversableCells[0];
-            float bestAngle = Vector2.Angle(relativePlayerPosition, bestCell);
-
-            foreach (var cell in traversableCells) {
-                Vector2Int relativeCellPosition = cell - position;
-                float angle = Vector2.Angle(relativePlayerPosition, relativeCellPosition);
-                if (angle < bestAngle) {
-                    bestCell = cell;
-                    bestAngle = angle;
-                }
-            }
-
-            return bestCell;
-        } else {
+        if (traversableCells.Count <= 0) {
+            Debug.Log("None traversable");
             return null;
-        }  
+        }
+
+        if (playerCell.x == position.x && traversableCells.Contains(playerCell)) {
+            if (playerCell.y >= position.y) {
+                return new Vector2Int(position.x, Mathf.Min(playerCell.y + 2, grid.YSize - 1));
+            } else {
+                return new Vector2Int(position.x, Mathf.Max(playerCell.y - 2, 0));
+            }
+        } else if (playerCell.y == position.y && traversableCells.Contains(playerCell)) {
+            if (playerCell.x >= position.x) {
+                return new Vector2Int(Mathf.Min(playerCell.x + 2, grid.XSize - 1), position.y);
+            } else {
+                return new Vector2Int(Mathf.Max(playerCell.x - 2, 0), position.y);
+            }
+        } else {
+            Debug.Log("Not in line");
+            List<Vector2Int> optimalCells = traversableCells.FindAll(cell => cell.y == playerCell.y || cell.x == playerCell.x);
+            if (optimalCells.Count > 0) {
+                Debug.Log("Found in line");
+                // Get cell with minimum travel distance 
+                // 
+                // i.e. 
+                // x ∈ optimalCells : ∀ c ∈ optimalCells . |x - playerPosition| <= |c - playerPosition|
+                // where optimalCells ⊆ ℕ²
+                return optimalCells.Find(
+                    cell => optimalCells.TrueForAll(
+                        innerCell => Vector2.Distance(cell, position) <= Vector2.Distance(innerCell, position)
+                        )
+                    ); 
+            } else {
+                Debug.Log("Random");
+                return traversableCells[Mathf.RoundToInt(Random.Range(0, traversableCells.Count - 1))];
+            }
+            
+        }
     }
 }
