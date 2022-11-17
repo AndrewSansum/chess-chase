@@ -1208,7 +1208,6 @@ GameObject:
   - component: {fileID: 787960950}
   - component: {fileID: 787960949}
   - component: {fileID: 787960952}
-  - component: {fileID: 787960953}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1316,26 +1315,6 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &787960953
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 787960948}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a160d838ff8b4b4693ac20007e008c7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_AssetsPPU: 12
-  m_RefResolutionX: 32
-  m_RefResolutionY: 32
-  m_UpscaleRT: 0
-  m_PixelSnapping: 0
-  m_CropFrameX: 0
-  m_CropFrameY: 0
-  m_StretchFill: 0
 --- !u!1 &814365336
 GameObject:
   m_ObjectHideFlags: 0
@@ -18724,7 +18703,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2021972973}
   - component: {fileID: 2021972972}
-  - component: {fileID: 2021972974}
   m_Layer: 0
   m_Name: CM vcam1
   m_TagString: Untagged
@@ -18786,15 +18764,3 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2021972974
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2021972971}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a8a05de0ac134f4f9d01bef6b9da077, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
