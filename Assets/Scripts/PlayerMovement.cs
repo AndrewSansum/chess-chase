@@ -14,10 +14,15 @@ public class PlayerMovement : MonoBehaviour
 
     private float horizontalInput;
     private float verticalInput;
+
+    public Vector3 respawnPoint;
+    public LevelManager gameLevelManager;
     
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        respawnPoint = transform.position;
+        gameLevelManager = FindObjectOfType<LevelManager>();
     }
 
     void Update()
@@ -79,6 +84,23 @@ public class PlayerMovement : MonoBehaviour
         }
 
         rb.velocity += Time.fixedDeltaTime * new Vector2(hComponent, vComponent);
-        rb.velocity = Vector2.ClampMagnitude(rb.velocity, maxSpeed);
+        rb.velocity = Vector2.ClampMagnitude(rb.velocity, maxSpeed);        
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "Checkpoint")
+        {
+            respawnPoint = other.transform.position;
+            gameLevelManager.Checkpoint();
+            other.enabled = false;
+        }
+
+        if (other.tag == "Blockpoint") 
+        {
+            gameLevelManager.Blockpoint();
+            other.enabled = false; // current bug, this needs to be reset to true on respawn
+        }
+
     }
 }
