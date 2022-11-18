@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 8498458666702058736}
   m_Layer: 0
   m_Name: KingEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -144,7 +144,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: facf9fd9446d16c439ca46d6c44df17e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackInterval: 3
+  attackInterval: 5
+  moveInterval: 2
   playerTransform: {fileID: 0}
   grid: {fileID: 0}
-  moveSpeed: 5
+  moveSpeed: 10
+  attackSpeed: 20
