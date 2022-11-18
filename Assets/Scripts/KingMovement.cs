@@ -33,7 +33,7 @@ public class KingMovement : EnemyMovement
         return path;
     }
 
-    public override Vector2Int? ChooseNextCell(Vector3 playerPosition) {
+    public override Vector2Int? GetNextMovementCell(Vector3 playerPosition) {
         Vector2Int relativePlayerPosition = grid.WorldToCell(playerPosition) - position;
 
         List<Vector2Int> traversableCells = GetTraversableCells();
@@ -55,5 +55,35 @@ public class KingMovement : EnemyMovement
         } else {
             return null;
         }  
+    }
+
+    public override Vector2Int? GetNextAttackCell(Vector3 playerPosition) {
+        Vector2Int relativePlayerPosition = grid.WorldToCell(playerPosition) - position;
+
+        List<Vector2Int> traversableCells = GetTraversableCells();
+
+        if (traversableCells.Count > 0) {
+            Vector2Int bestCell = traversableCells[0];
+            float bestAngle = Vector2.Angle(relativePlayerPosition, bestCell);
+
+            foreach (var cell in traversableCells) {
+                Vector2Int relativeCellPosition = cell - position;
+                float angle = Vector2.Angle(relativePlayerPosition, relativeCellPosition);
+                if (angle < bestAngle) {
+                    bestCell = cell;
+                    bestAngle = angle;
+                }
+            }
+
+            return bestCell;
+        } else {
+            return null;
+        }  
+    }
+
+    public override bool HasAttackOppurtunity(Vector3 playerPosition)
+    {
+        var playerCell = grid.WorldToCell(playerPosition);
+        return playerCell.x - 1 <= position.x && position.x <= playerCell.x + 1 && playerCell.y - 1 <= position.y && position.y <= playerCell.y + 1;
     }
 }
