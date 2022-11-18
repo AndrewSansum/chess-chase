@@ -144,7 +144,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: facf9fd9446d16c439ca46d6c44df17e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackInterval: 3
+  attackInterval: 5
+  moveInterval: 2
   playerTransform: {fileID: 0}
   grid: {fileID: 0}
-  moveSpeed: 5
+  moveSpeed: 10
+  attackSpeed: 20
