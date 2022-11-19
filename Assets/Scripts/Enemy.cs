@@ -24,6 +24,8 @@ public class Enemy : MonoBehaviour
     private bool moveAvailable = false;
     private bool attackAvailable = false;
 
+    private bool inAttackMode = false;
+
     void Start() {
         tf = this.gameObject.transform;
 
@@ -37,11 +39,12 @@ public class Enemy : MonoBehaviour
 
     void Update() {
         if (!moving && moveQueue.Count != 0) {
-            if (!attackAvailable) {
+            if (inAttackMode) {
                 StartCoroutine(MoveToCell(moveQueue.Dequeue(), attackSpeed));
                 if (moveQueue.Count == 0) {
                     StartCoroutine(AttackCooldown());
                     StartCoroutine(MoveCooldown());
+                    inAttackMode = false;
                 }
             } else {
                 StartCoroutine(MoveToCell(moveQueue.Dequeue(), moveSpeed));
@@ -70,6 +73,7 @@ public class Enemy : MonoBehaviour
                         }
                         moveAvailable = false;
                         attackAvailable = false;
+                        inAttackMode = true;
                     } 
                 }
             } else {
