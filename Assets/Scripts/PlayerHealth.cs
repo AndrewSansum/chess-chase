@@ -11,6 +11,7 @@ public class PlayerHealth : MonoBehaviour
     //public SpriteRenderer playerDeath;
     public PlayerMovement playerMovement;
     public SwordSwing swordSwing;
+    public LevelManager levelManager;
 
     void Start()
     {
@@ -23,8 +24,9 @@ public class PlayerHealth : MonoBehaviour
 
         if (currentHealth <= 0) 
         {
-            playerMovement.enabled = false;
-            swordSwing.enabled = false;
+            //playerMovement.enabled = false;
+            //swordSwing.enabled = false;
+            levelManager.Respawn();
 
             // Death Animation?
             // Game over screen?
