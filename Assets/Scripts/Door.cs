@@ -10,6 +10,8 @@ public class Door : MonoBehaviour
     public SpriteRenderer SR;
     public Sprite doorOpenSprite;
 
+    public int NextScene;
+
     public float DoorDistance = 1f;
 
     // Start is called before the first frame update
@@ -28,7 +30,7 @@ public class Door : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            SceneManager.LoadScene(1, LoadSceneMode.Single);
+            SceneManager.LoadScene(NextScene, LoadSceneMode.Single);
         }
     }
 }
