@@ -4807,7 +4807,11 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -8, y: 8}
+        - {x: -8, y: 2}
+        - {x: 8, y: 2}
+        - {x: 8, y: 8}
       tessellationDetail: 0
       bones: []
       spriteID: ae12f6210371a7248a6a0f0a77122fc7
@@ -13890,9 +13894,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 320
-        y: 336
+        y: 320
         width: 16
-        height: 16
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -14393,27 +14397,6 @@ TextureImporter:
       bones: []
       spriteID: c7cb5dda8ae3e134c8abd4d3e0b04c32
       internalID: -1994847946
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ts_dungeon_679
-      rect:
-        serializedVersion: 2
-        x: 320
-        y: 320
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 50698f03d0601144983b69dc6b353cae
-      internalID: 565733863
       vertices: []
       indices: 
       edges: []
@@ -20622,14 +20605,14 @@ TextureImporter:
       ts_dungeon_194: 22449400
       ts_dungeon_900: 332470632
       ts_dungeon_557: -1497014924
-      ts_dungeon_212: 696675997
+      ts_dungeon_968: 1902400396
       ts_dungeon_975: -2137537787
       ts_dungeon_663: -230031699
       ts_dungeon_394: -835144836
       ts_dungeon_801: 1056084999
       ts_dungeon_93: -518255610
       ts_dungeon_581: -1882775107
-      ts_dungeon_968: 1902400396
+      ts_dungeon_212: 696675997
       ts_dungeon_753: 1930913908
       ts_dungeon_562: -946376772
       ts_dungeon_790: 476780981
