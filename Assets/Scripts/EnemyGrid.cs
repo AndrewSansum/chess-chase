@@ -10,6 +10,8 @@ public class EnemyGrid : MonoBehaviour
     
     public Tilemap floorTilemap;
 
+    public Color hightlightColor;
+
     private int xOffset;
     private int yOffset;
     public int XSize {get; private set;}
@@ -43,7 +45,7 @@ public class EnemyGrid : MonoBehaviour
     }
 
     public void HighlightCell(Vector2Int position) {
-        SetColor(position, Color.green, floorTilemap);
+        SetColor(position, hightlightColor, floorTilemap);
     }
 
     public void ClearCell(Vector2Int position) {
