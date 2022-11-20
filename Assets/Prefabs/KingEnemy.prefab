@@ -152,6 +152,7 @@ MonoBehaviour:
   grid: {fileID: 0}
   moveSpeed: 10
   attackSpeed: 20
+  attackPauseTime: 2
 --- !u!114 &31192584404348700
 MonoBehaviour:
   m_ObjectHideFlags: 0

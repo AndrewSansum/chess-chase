@@ -93,6 +93,7 @@ MonoBehaviour:
   grid: {fileID: 0}
   moveSpeed: 10
   attackSpeed: 20
+  attackPauseTime: 2
 --- !u!1 &8138763119165500828
 GameObject:
   m_ObjectHideFlags: 0

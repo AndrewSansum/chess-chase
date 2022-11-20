@@ -67,6 +67,7 @@ MonoBehaviour:
   grid: {fileID: 0}
   moveSpeed: 10
   attackSpeed: 20
+  attackPauseTime: 2
 --- !u!61 &-128205623176412746
 BoxCollider2D:
   m_ObjectHideFlags: 0
