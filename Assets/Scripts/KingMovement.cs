@@ -45,7 +45,7 @@ public class KingMovement : EnemyMovement
             foreach (var cell in traversableCells) {
                 Vector2Int relativeCellPosition = cell - position;
                 float angle = Vector2.Angle(relativePlayerPosition, relativeCellPosition);
-                if (angle < bestAngle) {
+                if (angle > bestAngle) {
                     bestCell = cell;
                     bestAngle = angle;
                 }
