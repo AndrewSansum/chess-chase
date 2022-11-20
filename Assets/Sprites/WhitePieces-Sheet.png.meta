@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: dcb153a14ef481b4a8ab88bb530739c6
+guid: 91d6d9d924416214c8c70cee77028308
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -105,7 +105,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: WhitePieces_0
+      name: WhitePieces-Sheet_0
       rect:
         serializedVersion: 2
         x: 0
@@ -113,119 +113,119 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d091314096120ba49a6b7d85cdcad9ca
-      internalID: -136085879
+      spriteID: fb187c37daa659c4c874729fd242e6c7
+      internalID: -965198545
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WhitePieces_1
+      name: WhitePieces-Sheet_1
       rect:
         serializedVersion: 2
         x: 16
         y: 0
         width: 16
-        height: 16
+        height: 20
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7a36344b6efde894aab1afbd4f2d4033
-      internalID: 107974467
+      spriteID: d99178c588b8895458f83e2ea8ada1c9
+      internalID: 1120610130
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WhitePieces_2
+      name: WhitePieces-Sheet_2
       rect:
         serializedVersion: 2
         x: 32
         y: 0
         width: 16
-        height: 16
+        height: 19
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5e95244eee55948488d50386e0c61eee
-      internalID: -228565375
+      spriteID: c7208d1a23ba54745adb1346c21a41f4
+      internalID: 1156965963
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WhitePieces_3
+      name: WhitePieces-Sheet_3
       rect:
         serializedVersion: 2
         x: 48
         y: 0
         width: 16
-        height: 16
+        height: 21
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2ec0dffea1ea8e247bcaa3d7611c4ca2
-      internalID: -862671875
+      spriteID: 55a2474e4f04bc04ebaa2317d05cdee2
+      internalID: -1977004834
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WhitePieces_4
+      name: WhitePieces-Sheet_4
       rect:
         serializedVersion: 2
         x: 64
         y: 0
         width: 16
-        height: 16
+        height: 24
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d003c3ef94225cd40a8422cfe158d3de
-      internalID: 1865392222
+      spriteID: b2adb53294586e241b96c3b3e155124a
+      internalID: -463295219
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WhitePieces_5
+      name: WhitePieces-Sheet_5
       rect:
         serializedVersion: 2
         x: 80
         y: 0
         width: 16
-        height: 16
+        height: 27
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6c37e850eeda83b4895f6dd875ca7d30
-      internalID: 1065642959
+      spriteID: 569309cc3c0512c4d9a3bdbdedf04866
+      internalID: 11229797
       vertices: []
       indices: 
       edges: []
@@ -241,12 +241,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      WhitePieces_5: 1065642959
-      WhitePieces_3: -862671875
-      WhitePieces_0: -136085879
-      WhitePieces_1: 107974467
-      WhitePieces_2: -228565375
-      WhitePieces_4: 1865392222
+      WhitePieces-Sheet_1: 1120610130
+      WhitePieces-Sheet_3: -1977004834
+      WhitePieces-Sheet_4: -463295219
+      WhitePieces-Sheet_5: 11229797
+      WhitePieces-Sheet_2: 1156965963
+      WhitePieces-Sheet_0: -965198545
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
