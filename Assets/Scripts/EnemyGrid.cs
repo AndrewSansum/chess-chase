@@ -7,6 +7,10 @@ using UnityEngine.Tilemaps;
 public class EnemyGrid : MonoBehaviour
 {
     private Tilemap tilemap;
+    
+    public Tilemap floorTilemap;
+
+    public Color hightlightColor;
 
     private int xOffset;
     private int yOffset;
@@ -33,17 +37,34 @@ public class EnemyGrid : MonoBehaviour
                     grid[x, y].SetObstacle();
                 }
             }
-        }        
+        }
     }
 
     public GridValue GetGridValue(int x, int y) {
         return grid[x,y];
     }
 
+    public void HighlightCell(Vector2Int position) {
+        SetColor(position, hightlightColor, floorTilemap);
+    }
+
+    public void ClearCell(Vector2Int position) {
+        SetColor(position, Color.white, floorTilemap);
+    }
+
+    private void SetColor(Vector2Int position, Color color, Tilemap tilemap) {
+        Vector3Int tilemapPos = tilemap.WorldToCell(CellToWorld(position));
+        if (tilemap.HasTile(tilemapPos)) {
+            tilemap.SetTileFlags(tilemapPos, TileFlags.None);
+            tilemap.SetColor(tilemapPos, color);
+        } 
+    }
+
     public bool ReserveGridCell(int x, int y, Object reserver) {
         GridValue cell = grid[x, y];
         if (cell.IsEmpty()) {
             cell.SetReserved(reserver.GetInstanceID());
+            HighlightCell(new Vector2Int(x,y));
             return true;
         } else {
             return false;
@@ -54,6 +75,7 @@ public class EnemyGrid : MonoBehaviour
         GridValue cell = grid[x, y];
         if (cell.IsReserved() && cell.GetValue() == reserver.GetInstanceID()) {
             cell.SetEmpty();
+            ClearCell(new Vector2Int(x,y));
         }
     }
 

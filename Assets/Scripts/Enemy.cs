@@ -19,6 +19,8 @@ public class Enemy : MonoBehaviour
 
     public float moveSpeed;
     public float attackSpeed;
+
+    public float attackPauseTime;
     private bool moving = false;
     private Queue<Vector2Int> moveQueue = new Queue<Vector2Int>();
     private bool moveAvailable = false;
@@ -74,6 +76,7 @@ public class Enemy : MonoBehaviour
                         moveAvailable = false;
                         attackAvailable = false;
                         inAttackMode = true;
+                        StartCoroutine(AttackPause());
                     } 
                 }
             } else {
@@ -107,6 +110,12 @@ public class Enemy : MonoBehaviour
     private IEnumerator AttackCooldown() {
         yield return new WaitForSeconds(attackInterval);
         attackAvailable = true;
+    }
+
+    private IEnumerator AttackPause() {
+        moving = true;
+        yield return new WaitForSeconds(attackPauseTime);
+        moving = false;
     }
 
     private IEnumerator MoveToCell(Vector2Int cell, float speed) {
