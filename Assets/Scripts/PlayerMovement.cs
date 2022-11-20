@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovement : MonoBehaviour
@@ -11,6 +12,14 @@ public class PlayerMovement : MonoBehaviour
 
     private Rigidbody2D rb;
     public Animator animator;
+    public PlayerHealth playerHealth;
+
+    public Color flashColour;
+    public Color regColour;
+    public float flashDuration;
+    public float numFlashes;
+    public bool immune = false;
+    public SpriteRenderer playerSprite;
 
     private float horizontalInput;
     private float verticalInput;
@@ -102,5 +111,36 @@ public class PlayerMovement : MonoBehaviour
             other.enabled = false; // current bug, this needs to be reset to true on respawn
         }
 
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "Enemy" && immune == false)
+        {
+            Debug.Log("Enemy hit");
+            if (playerHealth.currentHealth == 1)
+            {
+                playerHealth.TakeDamage(1);
+            }
+            else
+            {
+                playerHealth.TakeDamage(1);
+                StartCoroutine(Invulnerability());
+            }      
+        }
+    }
+    private IEnumerator Invulnerability()
+    {
+        int count = 0;
+        immune = true;
+        while (count < numFlashes)
+        {
+            playerSprite.color = flashColour;
+            yield return new WaitForSeconds(flashDuration);
+            playerSprite.color = regColour;
+            yield return new WaitForSeconds(flashDuration);
+            count++;
+        }
+        immune = false;
     }
 }
