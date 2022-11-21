@@ -119,6 +119,12 @@ public class Enemy : MonoBehaviour
         StartCoroutine(MoveCooldown());
     }
 
+    public void Disable() {
+        Reset();
+        this.StopAllCoroutines();
+        this.enabled = false;
+    }
+
     private IEnumerator MoveCooldown() {
         yield return new WaitForSeconds(moveInterval);
         moveAvailable = true;
