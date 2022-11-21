@@ -28,12 +28,15 @@ public class Enemy : MonoBehaviour
 
     private bool inAttackMode = false;
 
+    private Vector2Int initialPosition;
+
     void Start() {
         tf = this.gameObject.transform;
 
         mover = GetComponent<EnemyMovement>();
         mover.Init(grid);
         grid.ReserveGridCell(mover.GetPosition().x, mover.GetPosition().y, this);
+        initialPosition = mover.GetPosition();
         StartCoroutine(MoveToCell(mover.GetPosition(), attackSpeed));
         StartCoroutine(AttackCooldown());
         StartCoroutine(MoveCooldown());
@@ -100,6 +103,20 @@ public class Enemy : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void Reset() {
+        this.StopAllCoroutines();
+        mover.SetPosition(initialPosition);
+        grid.ReserveGridCell(mover.GetPosition().x, mover.GetPosition().y, this);
+        moveQueue = new Queue<Vector2Int>();
+        moving = false;
+        moveAvailable = false;
+        attackAvailable = false;
+        inAttackMode = false;
+        StartCoroutine(MoveToCell(mover.GetPosition(), 10000));
+        StartCoroutine(AttackCooldown());
+        StartCoroutine(MoveCooldown());
     }
 
     private IEnumerator MoveCooldown() {

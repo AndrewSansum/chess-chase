@@ -79,6 +79,22 @@ public class EnemyGrid : MonoBehaviour
         }
     }
 
+    public void ResetGrid() {
+        for (int x = 0; x < XSize; x++) {
+            for (int y = 0; y < YSize; y++) {
+                ClearReservation(x, y);
+            }
+        }
+    }
+
+    private void ClearReservation(int x, int y) {
+        GridValue cell = grid[x, y];
+        if (cell.IsReserved()) {
+            cell.SetEmpty();
+            ClearCell(new Vector2Int(x,y));
+        }
+    }
+
     public Vector2Int WorldToCell(Vector3 worldPosition) {
         Vector3Int tilemapPosition = tilemap.WorldToCell(worldPosition);
         return new Vector2Int(tilemapPosition.x - xOffset, tilemapPosition.y - yOffset);
