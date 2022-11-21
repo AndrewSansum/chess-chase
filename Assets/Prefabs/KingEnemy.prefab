@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 9075035970201765375}
   m_Layer: 0
   m_Name: KingEnemy
-  m_TagString: Enemy
+  m_TagString: King
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -151,6 +151,7 @@ MonoBehaviour:
   moveSpeed: 10
   attackSpeed: 20
   attackPauseTime: 2
+  startEnabled: 0
 --- !u!114 &31192584404348700
 MonoBehaviour:
   m_ObjectHideFlags: 0
