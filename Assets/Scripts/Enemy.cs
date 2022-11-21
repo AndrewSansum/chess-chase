@@ -129,5 +129,6 @@ public class Enemy : MonoBehaviour
         tf.position = targetPosition;
         moving = false;
         mover.position = cell;
+        grid.ClearCell(cell);
     }
 }
