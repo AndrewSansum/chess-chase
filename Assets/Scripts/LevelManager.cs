@@ -15,6 +15,7 @@ public class LevelManager : MonoBehaviour
 
     public BoxCollider2D cpSRCollider;
     public BoxCollider2D bpSRCollider;
+    public BoxCollider2D blockTrigger;
 
     public PlayerHealth playerhealth;
 
@@ -38,6 +39,7 @@ public class LevelManager : MonoBehaviour
     {
         gamePlayer.gameObject.SetActive(false);
         bpSRCollider.enabled = false;
+        blockTrigger.enabled = true;
         bpSR.sprite = blockDisabled;
         gamePlayer.transform.position = gamePlayer.respawnPoint;
         playerhealth.currentHealth = 3;
