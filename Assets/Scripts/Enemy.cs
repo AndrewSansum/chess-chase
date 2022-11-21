@@ -32,7 +32,7 @@ public class Enemy : MonoBehaviour
         tf = this.gameObject.transform;
 
         mover = GetComponent<EnemyMovement>();
-        mover.Init();
+        mover.Init(grid);
         grid.ReserveGridCell(mover.GetPosition().x, mover.GetPosition().y, this);
         StartCoroutine(MoveToCell(mover.GetPosition(), attackSpeed));
         StartCoroutine(AttackCooldown());

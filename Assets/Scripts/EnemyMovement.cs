@@ -5,9 +5,10 @@ using UnityEngine;
 public abstract class EnemyMovement : MonoBehaviour
 {
     public Vector2Int position;
-    public EnemyGrid grid;
-    public virtual void Init() {
-        position = grid.WorldToCell(this.gameObject.transform.position);
+    private EnemyGrid grid;
+    public virtual void Init(EnemyGrid grid) {
+        this.grid = grid;
+        position = this.grid.WorldToCell(this.gameObject.transform.position);
     }
 
     public abstract Queue<Vector2Int> GetPathToCell(Vector2Int cellPosition);
