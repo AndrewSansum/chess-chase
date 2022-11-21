@@ -17,6 +17,9 @@ public class LevelManager : MonoBehaviour
     public BoxCollider2D bpSRCollider;
 
     public PlayerHealth playerhealth;
+
+    public List<Enemy> enemyList;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,6 +41,15 @@ public class LevelManager : MonoBehaviour
         bpSR.sprite = blockDisabled;
         gamePlayer.transform.position = gamePlayer.respawnPoint;
         playerhealth.currentHealth = 3;
+
+        if (enemyList.Count > 0) {
+            enemyList[0].grid.ResetGrid();
+            foreach (var enemy in enemyList)
+            {
+                enemy.Reset();
+            }
+        }
+
         gamePlayer.gameObject.SetActive(true);
     }
 
