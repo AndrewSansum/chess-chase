@@ -31,7 +31,10 @@ EditorBuildSettings:
     guid: 708e8eb96a0f5bc46ab8e1fcc300060d
   - enabled: 1
     path: Assets/Scenes/TutorialSix.unity
-    guid: 7eb0f1f60dad875428f570d468fedd79
+    guid: dd4560c904e78f34f85b870f88b61b3e
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 0e5ec32af19372f4d96b2c8d51da05a7

@@ -8,11 +8,8 @@ public class Door : MonoBehaviour
     //private PlayerMovement player;
 
     public SpriteRenderer SR;
-    public Sprite doorOpenSprite;
 
     public int NextScene;
-
-    public float DoorDistance = 1f;
 
     // Start is called before the first frame update
     void Start()

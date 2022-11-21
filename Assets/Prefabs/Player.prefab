@@ -123,16 +123,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d9ea3c197c0014498131ebf088d072e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 10
+  maxSpeed: 7.5
   acceleration: 100
   deceleration: 100
   turnSpeed: 100
   animator: {fileID: 8266774481170420542}
   playerHealth: {fileID: 8266774481170420543}
-  flashColour: {r: 1, g: 0.49955606, b: 0.21226418, a: 0.7058824}
+  flashColour: {r: 1, g: 0.41960785, b: 0.46666667, a: 0.7058824}
   regColour: {r: 0.65882355, g: 0.65882355, b: 0.65882355, a: 1}
-  flashDuration: 0.7
-  numFlashes: 4
+  flashDuration: 0.2
+  numFlashes: 3
   immune: 0
   playerSprite: {fileID: 8266774481170420531}
   respawnPoint: {x: -0, y: -2.94, z: 0}
