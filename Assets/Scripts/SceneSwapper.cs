@@ -16,4 +16,8 @@ public class SceneSwapper : MonoBehaviour
     public static void LoadTutorial() {
         SceneManager.LoadScene("TutorialOne");
     }
+
+    public static void Quit() {
+        Application.Quit();
+    }
 }
