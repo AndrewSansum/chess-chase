@@ -39,6 +39,20 @@ public class LevelManager : MonoBehaviour
 
     public void Respawn() 
     {
+        if (!cpSRCollider.enabled) {
+            foreach (var enemy in firstSectionEnemies)
+            {
+                enemy.Disable();
+            }
+        }
+        
+        if (bpSRCollider.enabled) {
+            foreach (var enemy in secondSectionEnemies)
+            {
+                enemy.Disable();
+            }
+        }
+
         gamePlayer.gameObject.SetActive(false);
         bpSRCollider.enabled = false;
         blockTrigger.enabled = true;
@@ -48,18 +62,17 @@ public class LevelManager : MonoBehaviour
 
         if (firstSectionEnemies.Count > 0) {
             firstSectionEnemies[0].grid.ResetGrid();
-        } else if (secondSectionEnemies.Count > 0) {
+        }
+        
+        if (secondSectionEnemies.Count > 0) {
             secondSectionEnemies[0].grid.ResetGrid();
         }
 
-        foreach (var enemy in firstSectionEnemies)
-        {
-            enemy.Reset();
-        }
-
-        foreach (var enemy in secondSectionEnemies)
-        {
-            enemy.Reset();
+        if (!cpSRCollider.enabled) {
+            foreach (var enemy in firstSectionEnemies)
+            {
+                enemy.Enable();
+            }
         }
 
         gamePlayer.gameObject.SetActive(true);
