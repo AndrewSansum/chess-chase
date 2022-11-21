@@ -114,7 +114,7 @@ public class Enemy : MonoBehaviour
         moveAvailable = false;
         attackAvailable = false;
         inAttackMode = false;
-        StartCoroutine(MoveToCell(mover.GetPosition(), attackSpeed));
+        StartCoroutine(MoveToCell(mover.GetPosition(), 10000));
         StartCoroutine(AttackCooldown());
         StartCoroutine(MoveCooldown());
     }
