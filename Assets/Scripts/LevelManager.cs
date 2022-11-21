@@ -19,6 +19,8 @@ public class LevelManager : MonoBehaviour
 
     public PlayerHealth playerhealth;
 
+    public Canvas gameOverScreen;
+
     public List<Enemy> firstSectionEnemies;
 
     public List<Enemy> secondSectionEnemies;
@@ -29,6 +31,7 @@ public class LevelManager : MonoBehaviour
         //gamePlayer = FindObjectOfType<PlayerMovement>();
         cpSRCollider.enabled = false;
         bpSRCollider.enabled = false;
+        gameOverScreen.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -37,8 +40,13 @@ public class LevelManager : MonoBehaviour
         
     }
 
+    public void GameOver() {
+        gameOverScreen.gameObject.SetActive(true);
+    }
+
     public void Respawn() 
-    {
+    {   
+        gameOverScreen.gameObject.SetActive(false);
         if (!cpSRCollider.enabled) {
             foreach (var enemy in firstSectionEnemies)
             {
@@ -59,6 +67,7 @@ public class LevelManager : MonoBehaviour
         bpSR.sprite = blockDisabled;
         gamePlayer.transform.position = gamePlayer.respawnPoint;
         playerhealth.currentHealth = 3;
+        playerhealth.gameObject.GetComponent<PlayerMovement>().enabled = true;
 
         if (firstSectionEnemies.Count > 0) {
             firstSectionEnemies[0].grid.ResetGrid();
