@@ -23,12 +23,14 @@ public class Enemy : MonoBehaviour
     public float attackPauseTime;
     private bool moving = false;
     private Queue<Vector2Int> moveQueue = new Queue<Vector2Int>();
-    private bool moveAvailable = false;
-    private bool attackAvailable = false;
+    private bool moveAvailable = true;
+    private bool attackAvailable = true;
 
     private bool inAttackMode = false;
 
     private Vector2Int initialPosition;
+
+    public bool startEnabled;
 
     void Start() {
         tf = this.gameObject.transform;
@@ -37,9 +39,12 @@ public class Enemy : MonoBehaviour
         mover.Init(grid);
         grid.ReserveGridCell(mover.GetPosition().x, mover.GetPosition().y, this);
         initialPosition = mover.GetPosition();
-        StartCoroutine(MoveToCell(mover.GetPosition(), attackSpeed));
-        StartCoroutine(AttackCooldown());
-        StartCoroutine(MoveCooldown());
+        StartCoroutine(MoveToCell(mover.GetPosition(), 10000));
+        this.enabled = false;
+
+        if (startEnabled) {
+            Enable();
+        }
     }
 
     void Update() {
@@ -107,16 +112,19 @@ public class Enemy : MonoBehaviour
 
     public void Reset() {
         this.StopAllCoroutines();
+        moving = true;
         mover.SetPosition(initialPosition);
         grid.ReserveGridCell(mover.GetPosition().x, mover.GetPosition().y, this);
         moveQueue = new Queue<Vector2Int>();
-        moving = false;
-        moveAvailable = false;
-        attackAvailable = false;
+        moveAvailable = true;
+        attackAvailable = true;
         inAttackMode = false;
         StartCoroutine(MoveToCell(mover.GetPosition(), 10000));
-        StartCoroutine(AttackCooldown());
-        StartCoroutine(MoveCooldown());
+    }
+
+    public void Enable() {
+        this.enabled = true;
+        this.Reset();
     }
 
     public void Disable() {
