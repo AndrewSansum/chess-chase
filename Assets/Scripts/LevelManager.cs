@@ -19,7 +19,9 @@ public class LevelManager : MonoBehaviour
 
     public PlayerHealth playerhealth;
 
-    public List<Enemy> enemyList;
+    public List<Enemy> firstSectionEnemies;
+
+    public List<Enemy> secondSectionEnemies;
 
     // Start is called before the first frame update
     void Start()
@@ -44,12 +46,20 @@ public class LevelManager : MonoBehaviour
         gamePlayer.transform.position = gamePlayer.respawnPoint;
         playerhealth.currentHealth = 3;
 
-        if (enemyList.Count > 0) {
-            enemyList[0].grid.ResetGrid();
-            foreach (var enemy in enemyList)
-            {
-                enemy.Reset();
-            }
+        if (firstSectionEnemies.Count > 0) {
+            firstSectionEnemies[0].grid.ResetGrid();
+        } else if (secondSectionEnemies.Count > 0) {
+            secondSectionEnemies[0].grid.ResetGrid();
+        }
+
+        foreach (var enemy in firstSectionEnemies)
+        {
+            enemy.Reset();
+        }
+
+        foreach (var enemy in secondSectionEnemies)
+        {
+            enemy.Reset();
         }
 
         gamePlayer.gameObject.SetActive(true);
@@ -59,12 +69,21 @@ public class LevelManager : MonoBehaviour
     {
         cpSR.sprite = blockEnabled;
         cpSRCollider.enabled = true;
+
+        foreach (var enemy in firstSectionEnemies)
+        {
+            enemy.Disable();
+        }
     }
 
     public void Blockpoint()
     {
         bpSR.sprite = blockEnabled;
         bpSRCollider.enabled = true;
+
+        foreach (var enemy in secondSectionEnemies) {
+            enemy.Enable();
+        }
     }
 
 }
