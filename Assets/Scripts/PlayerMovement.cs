@@ -127,6 +127,10 @@ public class PlayerMovement : MonoBehaviour
                 playerHealth.TakeDamage(1);
                 StartCoroutine(Invulnerability());
             }      
+        } else if (other.gameObject.CompareTag("King")) {
+            this.enabled = false;
+            immune = true;
+            gameLevelManager.LevelComplete();
         }
     }
     private IEnumerator Invulnerability()

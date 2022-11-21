@@ -21,6 +21,8 @@ public class LevelManager : MonoBehaviour
 
     public Canvas gameOverScreen;
 
+    public Canvas levelCompleteScreen;
+
     public List<Enemy> firstSectionEnemies;
 
     public List<Enemy> secondSectionEnemies;
@@ -42,6 +44,12 @@ public class LevelManager : MonoBehaviour
 
     public void GameOver() {
         gameOverScreen.gameObject.SetActive(true);
+    }
+    
+    public void LevelComplete() {
+        if (!gameOverScreen.isActiveAndEnabled) {
+            levelCompleteScreen.gameObject.SetActive(true);
+        }
     }
 
     public void Respawn() 
