@@ -39,7 +39,6 @@ public class Enemy : MonoBehaviour
         mover.Init(grid);
         grid.ReserveGridCell(mover.GetPosition().x, mover.GetPosition().y, this);
         initialPosition = mover.GetPosition();
-        StartCoroutine(MoveToCell(mover.GetPosition(), 10000));
         this.enabled = false;
 
         if (startEnabled) {
