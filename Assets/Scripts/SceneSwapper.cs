@@ -17,6 +17,10 @@ public class SceneSwapper : MonoBehaviour
         SceneManager.LoadScene("TutorialOne");
     }
 
+    public static void LoadLevelOne() {
+        SceneManager.LoadScene("LevelOne");
+    }
+
     public static void Quit() {
         Application.Quit();
     }
