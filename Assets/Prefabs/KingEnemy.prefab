@@ -95,7 +95,6 @@ GameObject:
   - component: {fileID: 8498458666702058737}
   - component: {fileID: 8498458666702058739}
   - component: {fileID: 8498458666702058736}
-  - component: {fileID: 31192584404348700}
   - component: {fileID: 9075035970201765375}
   m_Layer: 0
   m_Name: KingEnemy
@@ -152,20 +151,6 @@ MonoBehaviour:
   attackSpeed: 20
   attackPauseTime: 2
   startEnabled: 0
---- !u!114 &31192584404348700
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8498458666702058700}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c89265f6ca677d409b804ac5e0db8c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerHealth: {fileID: 0}
-  damage: 1
 --- !u!61 &9075035970201765375
 BoxCollider2D:
   m_ObjectHideFlags: 0
