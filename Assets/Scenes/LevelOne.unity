@@ -47833,17 +47833,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8266774481170420533, guid: 8acc8a5994f4c1c44b18d8961c443b01, type: 3}
-      propertyPath: maxSpeed
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 8266774481170420533, guid: 8acc8a5994f4c1c44b18d8961c443b01, type: 3}
-      propertyPath: numFlashes
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8266774481170420533, guid: 8acc8a5994f4c1c44b18d8961c443b01, type: 3}
-      propertyPath: flashDuration
-      value: 0.25
-      objectReference: {fileID: 0}
+      propertyPath: gameLevelManager
+      value: 
+      objectReference: {fileID: 1887598163}
     - target: {fileID: 8266774481170420534, guid: 8acc8a5994f4c1c44b18d8961c443b01, type: 3}
       propertyPath: m_Name
       value: Player
@@ -50284,7 +50276,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   floorTilemap: {fileID: 1158427206}
-  hightlightColor: {r: 1, g: 0.9783717, b: 0, a: 1}
+  hightlightColor: {r: 0, g: 1, b: 0, a: 1}
 --- !u!483693784 &2091979662
 TilemapRenderer:
   m_ObjectHideFlags: 0
