@@ -7,33 +7,33 @@ public class RookMovement : EnemyMovement
     private List<Vector2Int> GetTraversableCells() {
         List<Vector2Int> cells = new List<Vector2Int>();
 
-        for (int x = position.x - 1; x >= 0; x--) {
-            if (grid.GetGridValue(x, position.y).IsEmpty()) {
-                cells.Add(new Vector2Int(x, position.y));
+        for (int x = Position.x - 1; x >= 0; x--) {
+            if (grid.GetGridValue(x, Position.y).IsEmpty()) {
+                cells.Add(new Vector2Int(x, Position.y));
             } else {
                 break;
             }
         }
 
-        for (int x = position.x + 1; x < grid.XSize; x++) {
-            if (grid.GetGridValue(x, position.y).IsEmpty()) {
-                cells.Add(new Vector2Int(x, position.y));
+        for (int x = Position.x + 1; x < grid.XSize; x++) {
+            if (grid.GetGridValue(x, Position.y).IsEmpty()) {
+                cells.Add(new Vector2Int(x, Position.y));
             } else {
                 break;
             }
         }
 
-        for (int y = position.y + 1; y < grid.YSize; y++) {
-            if (grid.GetGridValue(position.x, y).IsEmpty()) {
-                cells.Add(new Vector2Int(position.x, y));
+        for (int y = Position.y + 1; y < grid.YSize; y++) {
+            if (grid.GetGridValue(Position.x, y).IsEmpty()) {
+                cells.Add(new Vector2Int(Position.x, y));
             } else {
                 break;
             }
         }
 
-        for (int y = position.y - 1; y >= 0; y--) {
-            if (grid.GetGridValue(position.x, y).IsEmpty()) {
-                cells.Add(new Vector2Int(position.x, y));
+        for (int y = Position.y - 1; y >= 0; y--) {
+            if (grid.GetGridValue(Position.x, y).IsEmpty()) {
+                cells.Add(new Vector2Int(Position.x, y));
             } else {
                 break;
             }
@@ -44,21 +44,21 @@ public class RookMovement : EnemyMovement
 
     public override Queue<Vector2Int> GetPathToCell(Vector2Int cellPosition) {
         Queue<Vector2Int> cells = new Queue<Vector2Int>();
-        if ((cellPosition - position).x > 0) {
-            for (int x = position.x + 1; x <= cellPosition.x; x++) {
-                cells.Enqueue(new Vector2Int(x, position.y));
+        if ((cellPosition - Position).x > 0) {
+            for (int x = Position.x + 1; x <= cellPosition.x; x++) {
+                cells.Enqueue(new Vector2Int(x, Position.y));
             }
-        } else if ((cellPosition - position).x < 0) {
-            for (int x = position.x - 1; x >= cellPosition.x; x--) {
-                cells.Enqueue(new Vector2Int(x, position.y));
+        } else if ((cellPosition - Position).x < 0) {
+            for (int x = Position.x - 1; x >= cellPosition.x; x--) {
+                cells.Enqueue(new Vector2Int(x, Position.y));
             }
-        } else if ((cellPosition - position).y > 0) {
-            for (int y = position.y + 1; y <= cellPosition.y; y++) {
-                cells.Enqueue(new Vector2Int(position.x, y));
+        } else if ((cellPosition - Position).y > 0) {
+            for (int y = Position.y + 1; y <= cellPosition.y; y++) {
+                cells.Enqueue(new Vector2Int(Position.x, y));
             }
-        } else if ((cellPosition - position).y < 0) {
-            for (int y = position.y - 1; y >= cellPosition.y; y--) {
-                cells.Enqueue(new Vector2Int(position.x, y));
+        } else if ((cellPosition - Position).y < 0) {
+            for (int y = Position.y - 1; y >= cellPosition.y; y--) {
+                cells.Enqueue(new Vector2Int(Position.x, y));
             }
         }
 
@@ -76,29 +76,29 @@ public class RookMovement : EnemyMovement
 
         List<Vector2Int> validCells = new List<Vector2Int>();
 
-        if (playerCell.y >= position.y) {
+        if (playerCell.y >= Position.y) {
             validCells.AddRange(traversableCells.FindAll(
-                cell => cell.x == position.x && playerCell.y <= cell.y && cell.y <= playerCell.y + 2
+                cell => cell.x == Position.x && playerCell.y <= cell.y && cell.y <= playerCell.y + 2
             ));
-        } else if (playerCell.y < position.y) {
+        } else if (playerCell.y < Position.y) {
             validCells.AddRange(traversableCells.FindAll(
-                cell => cell.x == position.x && playerCell.y >= cell.y && cell.y >= playerCell.y - 2
+                cell => cell.x == Position.x && playerCell.y >= cell.y && cell.y >= playerCell.y - 2
             ));
         }
         
-        if (playerCell.x >= position.x) {
+        if (playerCell.x >= Position.x) {
             validCells.AddRange(traversableCells.FindAll(
-                cell => cell.y == position.y && playerCell.x <= cell.x && cell.x <= playerCell.x + 2
+                cell => cell.y == Position.y && playerCell.x <= cell.x && cell.x <= playerCell.x + 2
             ));
-        } else if (playerCell.x < position.x) {
+        } else if (playerCell.x < Position.x) {
             validCells.AddRange(traversableCells.FindAll(
-                cell => cell.y == position.y && playerCell.x >= cell.x && cell.x >= playerCell.x - 2
+                cell => cell.y == Position.y && playerCell.x >= cell.x && cell.x >= playerCell.x - 2
             ));
         }
 
         return validCells.Find(
                 cell => validCells.TrueForAll(
-                    innerCell => Vector2.Distance(cell, position) >= Vector2.Distance(innerCell, position)
+                    innerCell => Vector2.Distance(cell, Position) >= Vector2.Distance(innerCell, Position)
                 )
             );
     }
@@ -126,7 +126,7 @@ public class RookMovement : EnemyMovement
             // where optimalCells ⊆ ℕ²
             return optimalCells.Find(
                 cell => optimalCells.TrueForAll(
-                    innerCell => Vector2.Distance(cell, position) <= Vector2.Distance(innerCell, position)
+                    innerCell => Vector2.Distance(cell, Position) <= Vector2.Distance(innerCell, Position)
                     )
                 ); 
         } else {

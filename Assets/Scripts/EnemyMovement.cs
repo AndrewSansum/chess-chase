@@ -4,11 +4,11 @@ using UnityEngine;
 
 public abstract class EnemyMovement : MonoBehaviour
 {
-    public Vector2Int position;
+    public Vector2Int Position {get; protected set;}
     protected EnemyGrid grid;
     public virtual void Init(EnemyGrid grid) {
         this.grid = grid;
-        position = this.grid.WorldToCell(this.gameObject.transform.position);
+        Position = this.grid.WorldToCell(this.gameObject.transform.position);
     }
 
     public abstract Queue<Vector2Int> GetPathToCell(Vector2Int cellPosition);
@@ -17,7 +17,11 @@ public abstract class EnemyMovement : MonoBehaviour
     public abstract Vector2Int? GetNextMovementCell(Vector3 playerPosition);
 
     public Vector2Int GetPosition() {
-        return position;
+        return Position;
+    }
+
+    public void SetPosition(Vector2Int newPosition) {
+        Position = newPosition;
     }
 
     public abstract bool HasAttackOppurtunity(Vector3 playerPosition);

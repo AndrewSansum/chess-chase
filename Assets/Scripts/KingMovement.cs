@@ -6,11 +6,11 @@ public class KingMovement : EnemyMovement
 {
     private List<Vector2Int> GetTraversableCells()
     {
-        int minX = (position.x > 0) ? position.x - 1 : 0;
-        int minY = (position.y > 0) ? position.y - 1 : 0;
+        int minX = (Position.x > 0) ? Position.x - 1 : 0;
+        int minY = (Position.y > 0) ? Position.y - 1 : 0;
 
-        int maxX = (position.x < grid.XSize - 1) ? position.x + 1 : grid.XSize - 1;
-        int maxY = (position.y < grid.YSize - 1) ? position.y + 1 : grid.YSize - 1;
+        int maxX = (Position.x < grid.XSize - 1) ? Position.x + 1 : grid.XSize - 1;
+        int maxY = (Position.y < grid.YSize - 1) ? Position.y + 1 : grid.YSize - 1;
 
         List<Vector2Int> cells = new List<Vector2Int>();
         for (int x = minX; x <= maxX; x++)
@@ -34,7 +34,7 @@ public class KingMovement : EnemyMovement
     }
 
     public override Vector2Int? GetNextMovementCell(Vector3 playerPosition) {
-        Vector2Int relativePlayerPosition = grid.WorldToCell(playerPosition) - position;
+        Vector2Int relativePlayerPosition = grid.WorldToCell(playerPosition) - Position;
 
         List<Vector2Int> traversableCells = GetTraversableCells();
 
@@ -43,7 +43,7 @@ public class KingMovement : EnemyMovement
             float bestAngle = Vector2.Angle(relativePlayerPosition, bestCell);
 
             foreach (var cell in traversableCells) {
-                Vector2Int relativeCellPosition = cell - position;
+                Vector2Int relativeCellPosition = cell - Position;
                 float angle = Vector2.Angle(relativePlayerPosition, relativeCellPosition);
                 if (angle > bestAngle) {
                     bestCell = cell;
@@ -58,7 +58,7 @@ public class KingMovement : EnemyMovement
     }
 
     public override Vector2Int? GetNextAttackCell(Vector3 playerPosition) {
-        Vector2Int relativePlayerPosition = grid.WorldToCell(playerPosition) - position;
+        Vector2Int relativePlayerPosition = grid.WorldToCell(playerPosition) - Position;
 
         List<Vector2Int> traversableCells = GetTraversableCells();
 
@@ -67,7 +67,7 @@ public class KingMovement : EnemyMovement
             float bestAngle = Vector2.Angle(relativePlayerPosition, bestCell);
 
             foreach (var cell in traversableCells) {
-                Vector2Int relativeCellPosition = cell - position;
+                Vector2Int relativeCellPosition = cell - Position;
                 float angle = Vector2.Angle(relativePlayerPosition, relativeCellPosition);
                 if (angle < bestAngle) {
                     bestCell = cell;
@@ -84,6 +84,6 @@ public class KingMovement : EnemyMovement
     public override bool HasAttackOppurtunity(Vector3 playerPosition)
     {
         var playerCell = grid.WorldToCell(playerPosition);
-        return playerCell.x - 1 <= position.x && position.x <= playerCell.x + 1 && playerCell.y - 1 <= position.y && position.y <= playerCell.y + 1;
+        return playerCell.x - 1 <= Position.x && Position.x <= playerCell.x + 1 && playerCell.y - 1 <= Position.y && Position.y <= playerCell.y + 1;
     }
 }

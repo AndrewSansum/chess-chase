@@ -7,65 +7,65 @@ public class QueenMovement : EnemyMovement
     private List<Vector2Int> GetTraversableCells() {
         List<Vector2Int> cells = new List<Vector2Int>();
 
-        for (int x = position.x - 1; x >= 0; x--) {
-            if (grid.GetGridValue(x, position.y).IsEmpty()) {
-                cells.Add(new Vector2Int(x, position.y));
+        for (int x = Position.x - 1; x >= 0; x--) {
+            if (grid.GetGridValue(x, Position.y).IsEmpty()) {
+                cells.Add(new Vector2Int(x, Position.y));
             } else {
                 break;
             }
         }
 
-        for (int x = position.x + 1; x < grid.XSize; x++) {
-            if (grid.GetGridValue(x, position.y).IsEmpty()) {
-                cells.Add(new Vector2Int(x, position.y));
+        for (int x = Position.x + 1; x < grid.XSize; x++) {
+            if (grid.GetGridValue(x, Position.y).IsEmpty()) {
+                cells.Add(new Vector2Int(x, Position.y));
             } else {
                 break;
             }
         }
 
-        for (int y = position.y + 1; y < grid.YSize; y++) {
-            if (grid.GetGridValue(position.x, y).IsEmpty()) {
-                cells.Add(new Vector2Int(position.x, y));
+        for (int y = Position.y + 1; y < grid.YSize; y++) {
+            if (grid.GetGridValue(Position.x, y).IsEmpty()) {
+                cells.Add(new Vector2Int(Position.x, y));
             } else {
                 break;
             }
         }
 
-        for (int y = position.y - 1; y >= 0; y--) {
-            if (grid.GetGridValue(position.x, y).IsEmpty()) {
-                cells.Add(new Vector2Int(position.x, y));
+        for (int y = Position.y - 1; y >= 0; y--) {
+            if (grid.GetGridValue(Position.x, y).IsEmpty()) {
+                cells.Add(new Vector2Int(Position.x, y));
             } else {
                 break;
             }
         }
 
-        for (int offset = 1; position.x + offset < grid.XSize && position.y + offset < grid.YSize; offset++) {
-            if (grid.GetGridValue(position.x + offset, position.y + offset).IsEmpty()) {
-                cells.Add(new Vector2Int(position.x + offset, position.y + offset));
+        for (int offset = 1; Position.x + offset < grid.XSize && Position.y + offset < grid.YSize; offset++) {
+            if (grid.GetGridValue(Position.x + offset, Position.y + offset).IsEmpty()) {
+                cells.Add(new Vector2Int(Position.x + offset, Position.y + offset));
             } else {
                 break;
             }
         }
 
-        for (int offset = 1; position.x + offset < grid.XSize && position.y - offset >= 0; offset++) {
-            if (grid.GetGridValue(position.x + offset, position.y - offset).IsEmpty()) {
-                cells.Add(new Vector2Int(position.x + offset, position.y - offset));
+        for (int offset = 1; Position.x + offset < grid.XSize && Position.y - offset >= 0; offset++) {
+            if (grid.GetGridValue(Position.x + offset, Position.y - offset).IsEmpty()) {
+                cells.Add(new Vector2Int(Position.x + offset, Position.y - offset));
             } else {
                 break;
             }
         }
 
-        for (int offset = 1; position.x - offset >= 0 && position.y - offset >= 0; offset++) {
-            if (grid.GetGridValue(position.x - offset, position.y - offset).IsEmpty()) {
-                cells.Add(new Vector2Int(position.x - offset, position.y - offset));
+        for (int offset = 1; Position.x - offset >= 0 && Position.y - offset >= 0; offset++) {
+            if (grid.GetGridValue(Position.x - offset, Position.y - offset).IsEmpty()) {
+                cells.Add(new Vector2Int(Position.x - offset, Position.y - offset));
             } else {
                 break;
             }
         }
 
-        for (int offset = 1; position.x - offset >= 0 && position.y + offset < grid.YSize; offset++) {
-            if (grid.GetGridValue(position.x - offset, position.y + offset).IsEmpty()) {
-                cells.Add(new Vector2Int(position.x - offset, position.y + offset));
+        for (int offset = 1; Position.x - offset >= 0 && Position.y + offset < grid.YSize; offset++) {
+            if (grid.GetGridValue(Position.x - offset, Position.y + offset).IsEmpty()) {
+                cells.Add(new Vector2Int(Position.x - offset, Position.y + offset));
             } else {
                 break;
             }
@@ -77,25 +77,25 @@ public class QueenMovement : EnemyMovement
     public override Queue<Vector2Int> GetPathToCell(Vector2Int cellPosition) {
         Queue<Vector2Int> cellQueue = new Queue<Vector2Int>();
 
-        int xDirMod = position.x == cellPosition.x ? 0 : Mathf.RoundToInt(Mathf.Sign(cellPosition.x - position.x));
-        int yDirMod = position.y == cellPosition.y ? 0 : Mathf.RoundToInt(Mathf.Sign(cellPosition.y - position.y));
+        int xDirMod = Position.x == cellPosition.x ? 0 : Mathf.RoundToInt(Mathf.Sign(cellPosition.x - Position.x));
+        int yDirMod = Position.y == cellPosition.y ? 0 : Mathf.RoundToInt(Mathf.Sign(cellPosition.y - Position.y));
 
         if (yDirMod == 0) {
-            for (int x = position.x + xDirMod; xDirMod * x <= xDirMod * cellPosition.x; x += xDirMod) {
-                cellQueue.Enqueue(new Vector2Int(x, position.y));
+            for (int x = Position.x + xDirMod; xDirMod * x <= xDirMod * cellPosition.x; x += xDirMod) {
+                cellQueue.Enqueue(new Vector2Int(x, Position.y));
             }
         } else if (xDirMod == 0) {
-            for (int y = position.y + yDirMod; yDirMod * y <= yDirMod * cellPosition.y; y += yDirMod) {
-                cellQueue.Enqueue(new Vector2Int(position.x, y));
+            for (int y = Position.y + yDirMod; yDirMod * y <= yDirMod * cellPosition.y; y += yDirMod) {
+                cellQueue.Enqueue(new Vector2Int(Position.x, y));
             }
         } else {
             for (int offset = 1; 
-                xDirMod * (position.x + (xDirMod * offset)) <= cellPosition.x * xDirMod
-                && yDirMod * (position.y + (yDirMod * offset)) <= cellPosition.y * yDirMod; offset ++) {
+                xDirMod * (Position.x + (xDirMod * offset)) <= cellPosition.x * xDirMod
+                && yDirMod * (Position.y + (yDirMod * offset)) <= cellPosition.y * yDirMod; offset ++) {
 
                 cellQueue.Enqueue(new Vector2Int(
-                    position.x + xDirMod * offset,
-                    position.y + yDirMod * offset
+                    Position.x + xDirMod * offset,
+                    Position.y + yDirMod * offset
                 ));
             }
         }
@@ -128,7 +128,7 @@ public class QueenMovement : EnemyMovement
             // where optimalCells ⊆ ℕ²
             return optimalCells.Find(
                 cell => optimalCells.TrueForAll(
-                    innerCell => Vector2.Distance(cell, position) <= Vector2.Distance(innerCell, position)
+                    innerCell => Vector2.Distance(cell, Position) <= Vector2.Distance(innerCell, Position)
                     )
                 ); 
         } else {
@@ -151,8 +151,8 @@ public class QueenMovement : EnemyMovement
 
         List<Vector2Int> validCells = new List<Vector2Int>();
 
-        int xDirMod = Mathf.RoundToInt(Mathf.Sign(playerCell.x - position.x));
-        int yDirMod = Mathf.RoundToInt(Mathf.Sign(playerCell.y - position.y));
+        int xDirMod = Mathf.RoundToInt(Mathf.Sign(playerCell.x - Position.x));
+        int yDirMod = Mathf.RoundToInt(Mathf.Sign(playerCell.y - Position.y));
 
         if (traversableCells.Contains(playerCell)) {
             validCells.Add(playerCell);
@@ -187,29 +187,29 @@ public class QueenMovement : EnemyMovement
         // - p x x
         // - - x -
 
-        if (playerCell.y >= position.y) {
+        if (playerCell.y >= Position.y) {
             validCells.AddRange(traversableCells.FindAll(
-                cell => cell.x == position.x && playerCell.y <= cell.y && cell.y <= playerCell.y + 2
+                cell => cell.x == Position.x && playerCell.y <= cell.y && cell.y <= playerCell.y + 2
             ));
-        } else if (playerCell.y < position.y) {
+        } else if (playerCell.y < Position.y) {
             validCells.AddRange(traversableCells.FindAll(
-                cell => cell.x == position.x && playerCell.y >= cell.y && cell.y >= playerCell.y - 2
+                cell => cell.x == Position.x && playerCell.y >= cell.y && cell.y >= playerCell.y - 2
             ));
         }
         
-        if (playerCell.x >= position.x) {
+        if (playerCell.x >= Position.x) {
             validCells.AddRange(traversableCells.FindAll(
-                cell => cell.y == position.y && playerCell.x <= cell.x && cell.x <= playerCell.x + 2
+                cell => cell.y == Position.y && playerCell.x <= cell.x && cell.x <= playerCell.x + 2
             ));
-        } else if (playerCell.x < position.x) {
+        } else if (playerCell.x < Position.x) {
             validCells.AddRange(traversableCells.FindAll(
-                cell => cell.y == position.y && playerCell.x >= cell.x && cell.x >= playerCell.x - 2
+                cell => cell.y == Position.y && playerCell.x >= cell.x && cell.x >= playerCell.x - 2
             ));
         }
 
         return validCells.Find(
                 cell => validCells.TrueForAll(
-                    innerCell => Vector2.Distance(cell, position) >= Vector2.Distance(innerCell, position)
+                    innerCell => Vector2.Distance(cell, Position) >= Vector2.Distance(innerCell, Position)
                 )
             );
     }

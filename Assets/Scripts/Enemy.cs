@@ -120,7 +120,7 @@ public class Enemy : MonoBehaviour
 
     private IEnumerator MoveToCell(Vector2Int cell, float speed) {
         moving = true;
-        grid.ReleaseReservation(mover.position.x, mover.position.y, this);
+        grid.ReleaseReservation(mover.Position.x, mover.Position.y, this);
         Vector3 targetPosition = grid.CellToWorld(cell);
         while ((targetPosition - tf.position).magnitude > speed/100f) {
             tf.position = Vector3.MoveTowards(tf.position, targetPosition, speed * Time.deltaTime);
@@ -128,7 +128,7 @@ public class Enemy : MonoBehaviour
         }
         tf.position = targetPosition;
         moving = false;
-        mover.position = cell;
+        mover.SetPosition(cell);
         grid.ClearCell(cell);
     }
 }

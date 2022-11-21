@@ -36,23 +36,23 @@ public class PawnMovement : EnemyMovement {
     private List<Vector2Int> GetTraversableCells() {
         List<Vector2Int> cells = new List<Vector2Int>();
 
-        if ((position + DirectionToVector(direction)).x >= 0
-            && (position + DirectionToVector(direction)).x < grid.XSize
+        if ((Position + DirectionToVector(direction)).x >= 0
+            && (Position + DirectionToVector(direction)).x < grid.XSize
             && (direction == Direction.East || direction == Direction.West)) {
 
-            for (int y = Mathf.Max(position.y - 1, 0); y <= Mathf.Min(grid.YSize - 1, position.y + 1); y++) {
-                if (grid.GetGridValue((position + DirectionToVector(direction)).x, y).IsEmpty()) {
-                    cells.Add(new Vector2Int((position + DirectionToVector(direction)).x, y));
+            for (int y = Mathf.Max(Position.y - 1, 0); y <= Mathf.Min(grid.YSize - 1, Position.y + 1); y++) {
+                if (grid.GetGridValue((Position + DirectionToVector(direction)).x, y).IsEmpty()) {
+                    cells.Add(new Vector2Int((Position + DirectionToVector(direction)).x, y));
                 }
             }
 
-        } else if ((position + DirectionToVector(direction)).y >= 0
-            && (position + DirectionToVector(direction)).y < grid.YSize
+        } else if ((Position + DirectionToVector(direction)).y >= 0
+            && (Position + DirectionToVector(direction)).y < grid.YSize
             && (direction == Direction.North || direction == Direction.South)) {
 
-            for (int x = Mathf.Max(position.x - 1, 0); x <= Mathf.Min(grid.XSize - 1, position.x + 1); x++) {
-                if (grid.GetGridValue(x, (position + DirectionToVector(direction)).y).IsEmpty()) {
-                    cells.Add(new Vector2Int(x, (position + DirectionToVector(direction)).y));
+            for (int x = Mathf.Max(Position.x - 1, 0); x <= Mathf.Min(grid.XSize - 1, Position.x + 1); x++) {
+                if (grid.GetGridValue(x, (Position + DirectionToVector(direction)).y).IsEmpty()) {
+                    cells.Add(new Vector2Int(x, (Position + DirectionToVector(direction)).y));
                 }
             }
         }
@@ -74,16 +74,16 @@ public class PawnMovement : EnemyMovement {
     public override Vector2Int? GetNextMovementCell(Vector3 playerPosition) {
         List<Vector2Int> traversableCells = GetTraversableCells();
 
-        if (traversableCells.Contains(position + DirectionToVector(direction))) {
-            return position + DirectionToVector(direction);
+        if (traversableCells.Contains(Position + DirectionToVector(direction))) {
+            return Position + DirectionToVector(direction);
         }
 
         direction = InverseDirection(direction);
 
         traversableCells = GetTraversableCells();
 
-        if (traversableCells.Contains(position + DirectionToVector(direction))) {
-            return position + DirectionToVector(direction);
+        if (traversableCells.Contains(Position + DirectionToVector(direction))) {
+            return Position + DirectionToVector(direction);
         }
 
         return null;

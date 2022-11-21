@@ -7,33 +7,33 @@ public class BishopMovement : EnemyMovement
     private List<Vector2Int> GetTraversableCells() {
         List<Vector2Int> cells = new List<Vector2Int>();
 
-        for (int offset = 1; position.x + offset < grid.XSize && position.y + offset < grid.YSize; offset++) {
-            if (grid.GetGridValue(position.x + offset, position.y + offset).IsEmpty()) {
-                cells.Add(new Vector2Int(position.x + offset, position.y + offset));
+        for (int offset = 1; Position.x + offset < grid.XSize && Position.y + offset < grid.YSize; offset++) {
+            if (grid.GetGridValue(Position.x + offset, Position.y + offset).IsEmpty()) {
+                cells.Add(new Vector2Int(Position.x + offset, Position.y + offset));
             } else {
                 break;
             }
         }
 
-        for (int offset = 1; position.x + offset < grid.XSize && position.y - offset >= 0; offset++) {
-            if (grid.GetGridValue(position.x + offset, position.y - offset).IsEmpty()) {
-                cells.Add(new Vector2Int(position.x + offset, position.y - offset));
+        for (int offset = 1; Position.x + offset < grid.XSize && Position.y - offset >= 0; offset++) {
+            if (grid.GetGridValue(Position.x + offset, Position.y - offset).IsEmpty()) {
+                cells.Add(new Vector2Int(Position.x + offset, Position.y - offset));
             } else {
                 break;
             }
         }
 
-        for (int offset = 1; position.x - offset >= 0 && position.y - offset >= 0; offset++) {
-            if (grid.GetGridValue(position.x - offset, position.y - offset).IsEmpty()) {
-                cells.Add(new Vector2Int(position.x - offset, position.y - offset));
+        for (int offset = 1; Position.x - offset >= 0 && Position.y - offset >= 0; offset++) {
+            if (grid.GetGridValue(Position.x - offset, Position.y - offset).IsEmpty()) {
+                cells.Add(new Vector2Int(Position.x - offset, Position.y - offset));
             } else {
                 break;
             }
         }
 
-        for (int offset = 1; position.x - offset >= 0 && position.y + offset < grid.YSize; offset++) {
-            if (grid.GetGridValue(position.x - offset, position.y + offset).IsEmpty()) {
-                cells.Add(new Vector2Int(position.x - offset, position.y + offset));
+        for (int offset = 1; Position.x - offset >= 0 && Position.y + offset < grid.YSize; offset++) {
+            if (grid.GetGridValue(Position.x - offset, Position.y + offset).IsEmpty()) {
+                cells.Add(new Vector2Int(Position.x - offset, Position.y + offset));
             } else {
                 break;
             }
@@ -45,16 +45,16 @@ public class BishopMovement : EnemyMovement
     public override Queue<Vector2Int> GetPathToCell(Vector2Int cellPosition) {
         Queue<Vector2Int> cellQueue = new Queue<Vector2Int>();
 
-        int xDirMod = Mathf.RoundToInt(Mathf.Sign(cellPosition.x - position.x));
-        int yDirMod = Mathf.RoundToInt(Mathf.Sign(cellPosition.y - position.y));
+        int xDirMod = Mathf.RoundToInt(Mathf.Sign(cellPosition.x - Position.x));
+        int yDirMod = Mathf.RoundToInt(Mathf.Sign(cellPosition.y - Position.y));
 
         for (int offset = 1; 
-            xDirMod * (position.x + (xDirMod * offset)) <= cellPosition.x * xDirMod
-            && yDirMod * (position.y + (yDirMod * offset)) <= cellPosition.y * yDirMod; offset ++) {
+            xDirMod * (Position.x + (xDirMod * offset)) <= cellPosition.x * xDirMod
+            && yDirMod * (Position.y + (yDirMod * offset)) <= cellPosition.y * yDirMod; offset ++) {
 
             cellQueue.Enqueue(new Vector2Int(
-                position.x + xDirMod * offset,
-                position.y + yDirMod * offset
+                Position.x + xDirMod * offset,
+                Position.y + yDirMod * offset
             ));
         }
 
@@ -92,7 +92,7 @@ public class BishopMovement : EnemyMovement
             // where optimalCells ⊆ ℕ²
             return optimalCells.Find(
                 cell => optimalCells.TrueForAll(
-                    innerCell => Vector2.Distance(cell, position) <= Vector2.Distance(innerCell, position)
+                    innerCell => Vector2.Distance(cell, Position) <= Vector2.Distance(innerCell, Position)
                     )
                 ); 
         } else {
@@ -116,8 +116,8 @@ public class BishopMovement : EnemyMovement
 
         List<Vector2Int> validCells = new List<Vector2Int>();
 
-        int xDirMod = Mathf.RoundToInt(Mathf.Sign(playerCell.x - position.x));
-        int yDirMod = Mathf.RoundToInt(Mathf.Sign(playerCell.y - position.y));
+        int xDirMod = Mathf.RoundToInt(Mathf.Sign(playerCell.x - Position.x));
+        int yDirMod = Mathf.RoundToInt(Mathf.Sign(playerCell.y - Position.y));
 
         if (traversableCells.Contains(playerCell)) {
             validCells.Add(playerCell);
@@ -153,7 +153,7 @@ public class BishopMovement : EnemyMovement
 
         return validCells.Find(
                 cell => validCells.TrueForAll(
-                    innerCell => Vector2.Distance(cell, position) >= Vector2.Distance(innerCell, position)
+                    innerCell => Vector2.Distance(cell, Position) >= Vector2.Distance(innerCell, Position)
                 )
             );
     }
