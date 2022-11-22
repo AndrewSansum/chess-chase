@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: -128205623176412746}
   - component: {fileID: 1502492620962188505}
   - component: {fileID: -1842062625821264173}
+  - component: {fileID: -3263164164087618147}
   m_Layer: 0
   m_Name: PawnEnemy
   m_TagString: Enemy
@@ -94,6 +95,20 @@ MonoBehaviour:
   attackSpeed: 20
   attackPauseTime: 1.5
   startEnabled: 0
+--- !u!114 &-3263164164087618147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 810350066410842378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed47d2fe54a10b843b9f654b19d48dba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  reserveSound: {fileID: 8300000, guid: c4cf8282273d5d04c838fdd84ea628b9, type: 3}
+  attackSound: {fileID: 8300000, guid: 18acb7258ab32cc48824d83a341a8e89, type: 3}
 --- !u!1 &8138763119165500828
 GameObject:
   m_ObjectHideFlags: 0
