@@ -34,7 +34,7 @@ public class MusicManager : MonoBehaviour
 
             audioSource = gameObject.GetComponent<AudioSource>();
             audioSource.loop = true;
-            audioSource.volume = 0.5f;
+            audioSource.volume = 0.2f;
         } else {
             if(this != _instance)
                 Destroy(this.gameObject);
@@ -42,14 +42,18 @@ public class MusicManager : MonoBehaviour
     }
 
     public void PlayMenuMusic() {
-        audioSource.Stop();
-        audioSource.clip = menuMusic;
-        audioSource.Play();
+        if (audioSource.clip != menuMusic) {
+            audioSource.Stop();
+            audioSource.clip = menuMusic;
+            audioSource.Play();
+        }
     }
 
     public void PlayGameMusic() {
-        audioSource.Stop();
-        audioSource.clip = gameMusic;
-        audioSource.Play();
+        if (audioSource.clip != gameMusic) {
+            audioSource.Stop();
+            audioSource.clip = gameMusic;
+            audioSource.Play();
+        }
     }
 }
