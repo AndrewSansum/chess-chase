@@ -99,6 +99,10 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = Vector2.ClampMagnitude(rb.velocity, maxSpeed);        
     }
 
+    public void Stop() {
+        rb.velocity = Vector2.zero;
+    }
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Checkpoint")
