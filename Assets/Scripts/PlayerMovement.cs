@@ -21,6 +21,9 @@ public class PlayerMovement : MonoBehaviour
     public bool immune = false;
     public SpriteRenderer playerSprite;
 
+    public GameObject healParticle;
+    public GameObject cpText;
+
     private float horizontalInput;
     private float verticalInput;
 
@@ -101,6 +104,7 @@ public class PlayerMovement : MonoBehaviour
         if (other.tag == "Checkpoint")
         {
             respawnPoint = other.transform.position;
+            Instantiate(cpText, this.transform.position, this.transform.rotation);
             gameLevelManager.Checkpoint();
             other.enabled = false;
         }
@@ -117,7 +121,6 @@ public class PlayerMovement : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy" && immune == false)
         {
-            Debug.Log("Enemy hit");
             if (playerHealth.currentHealth == 1)
             {
                 playerHealth.TakeDamage(1);
@@ -131,6 +134,12 @@ public class PlayerMovement : MonoBehaviour
             this.enabled = false;
             immune = true;
             gameLevelManager.LevelComplete();
+        }
+        if (other.gameObject.tag == "Health")
+        {
+            playerHealth.Heal(3);
+            Instantiate(healParticle, this.transform.position, this.transform.rotation);
+            other.gameObject.SetActive(false);
         }
     }
     private IEnumerator Invulnerability()
