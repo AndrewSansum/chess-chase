@@ -463,6 +463,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8266774481170420533, guid: 8acc8a5994f4c1c44b18d8961c443b01, type: 3}
+      propertyPath: healParticle
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266774481170420533, guid: 8acc8a5994f4c1c44b18d8961c443b01, type: 3}
       propertyPath: gameLevelManager
       value: 
       objectReference: {fileID: 1048497859}
@@ -561,7 +565,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 917904845337661668, guid: 917f0664e8fbab742b7124fc52c454cd, type: 3}
       propertyPath: m_RootOrder
-      value: 14
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 917904845337661668, guid: 917f0664e8fbab742b7124fc52c454cd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1098,7 +1102,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1057180501
 GameObject:
@@ -1198,7 +1202,7 @@ RectTransform:
   - {fileID: 1210728256}
   - {fileID: 1617522571}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -10286,7 +10290,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2769998463562736561, guid: d7e75012ea51c354bad5108175baeab2, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2769998463562736561, guid: d7e75012ea51c354bad5108175baeab2, type: 3}
       propertyPath: m_AnchorMax.x
