@@ -80,6 +80,12 @@ public class Enemy : MonoBehaviour
                         foreach (var cell in moveQueue) {
                             grid.ReserveGridCell(cell.x, cell.y, this);
                         }
+
+                        var audio = gameObject.GetComponent<EnemyAudio>();
+                        if(audio) {
+                            audio.PlayReservePathSound(tf.position);
+                        }
+
                         moveAvailable = false;
                         attackAvailable = false;
                         inAttackMode = true;
@@ -146,6 +152,10 @@ public class Enemy : MonoBehaviour
         moving = true;
         yield return new WaitForSeconds(attackPauseTime);
         moving = false;
+        var audio = gameObject.GetComponent<EnemyAudio>();
+        if(audio) {
+            audio.PlayAttackSound(tf.position);
+        }
     }
 
     private IEnumerator MoveToCell(Vector2Int cell, float speed) {

@@ -27,13 +27,21 @@ public class LevelManager : MonoBehaviour
 
     public List<Enemy> secondSectionEnemies;
 
+    private MusicManager musicManager;
+
     // Start is called before the first frame update
     void Start()
     {
         //gamePlayer = FindObjectOfType<PlayerMovement>();
-        cpSRCollider.enabled = false;
-        bpSRCollider.enabled = false;
+        if (cpSRCollider) {
+            cpSRCollider.enabled = false;
+        }
+        if (bpSRCollider) {
+            bpSRCollider.enabled = false;
+        }
         gameOverScreen.gameObject.SetActive(false);
+        musicManager = MusicManager.Instance;
+        musicManager.PlayGameMusic();
     }
 
     // Update is called once per frame
@@ -57,6 +65,7 @@ public class LevelManager : MonoBehaviour
     public void LevelComplete() {
         if (!gameOverScreen.isActiveAndEnabled) {
             levelCompleteScreen.gameObject.SetActive(true);
+            musicManager.PlayWinMusic();
             playerhealth.LevelComplete();
             foreach (var enemy in firstSectionEnemies)
             {

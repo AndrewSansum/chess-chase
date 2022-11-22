@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 8266774481170420528}
   - component: {fileID: 8266774481170420543}
   - component: {fileID: 8266774481170420542}
+  - component: {fileID: 4917558270899719133}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -135,6 +136,8 @@ MonoBehaviour:
   numFlashes: 3
   immune: 0
   playerSprite: {fileID: 8266774481170420531}
+  healParticle: {fileID: 0}
+  cpText: {fileID: 0}
   respawnPoint: {x: -0, y: -2.94, z: 0}
   gameLevelManager: {fileID: 0}
 --- !u!61 &8266774481170420529
@@ -221,3 +224,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &4917558270899719133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8266774481170420534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 511693d70a6a3534cb24ab3e1b664bad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitSound: {fileID: 8300000, guid: a7f8f74f2982ee549bb321d05d10d5a0, type: 3}
+  collectSound: {fileID: 8300000, guid: 5557ee283f9c9c942b0c9332d3c7de55, type: 3}
+  loseSound: {fileID: 8300000, guid: 1ebed4035d6c26847ad7cb4f65dc993d, type: 3}

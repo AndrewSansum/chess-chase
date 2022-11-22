@@ -22,15 +22,24 @@ public class PlayerHealth : MonoBehaviour
     {
         currentHealth -= dmg;
 
+        var audio = gameObject.GetComponent<PlayerAudio>();
+
         if (currentHealth <= 0) 
         {
             playerMovement.Stop();
             playerMovement.enabled = false;
+            if (audio) {
+                audio.PlayLoseSound(gameObject.transform.position);
+            }
             //swordSwing.enabled = false;
             levelManager.GameOver();
 
             // Death Animation?
             // Game over screen?
+        } else {
+            if (audio) {
+                audio.PlayHitSound(gameObject.transform.position);
+            }
         }
     }
 
