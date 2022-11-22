@@ -14,6 +14,8 @@ public class MusicManager : MonoBehaviour
 
     public AudioClip winMusic;
 
+    public AudioClip calmMusic;
+
     private AudioSource audioSource;
 
     private static MusicManager _instance;
@@ -63,6 +65,14 @@ public class MusicManager : MonoBehaviour
         if (audioSource.clip != winMusic) {
             audioSource.Stop();
             audioSource.clip = winMusic;
+            audioSource.Play();
+        }
+    }
+
+    public void PlayCalmMusic() {
+        if (audioSource.clip != calmMusic) {
+            audioSource.Stop();
+            audioSource.clip = calmMusic;
             audioSource.Play();
         }
     }
