@@ -34,7 +34,7 @@ public class MusicManager : MonoBehaviour
 
             audioSource = gameObject.GetComponent<AudioSource>();
             audioSource.loop = true;
-            audioSource.volume = 0.2f;
+            audioSource.volume = 0.05f;
         } else {
             if(this != _instance)
                 Destroy(this.gameObject);
