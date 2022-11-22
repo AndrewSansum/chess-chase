@@ -65,6 +65,7 @@ public class LevelManager : MonoBehaviour
     public void LevelComplete() {
         if (!gameOverScreen.isActiveAndEnabled) {
             levelCompleteScreen.gameObject.SetActive(true);
+            musicManager.PlayWinMusic();
             playerhealth.LevelComplete();
             foreach (var enemy in firstSectionEnemies)
             {
