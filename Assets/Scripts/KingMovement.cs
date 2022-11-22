@@ -83,7 +83,6 @@ public class KingMovement : EnemyMovement
 
     public override bool HasAttackOppurtunity(Vector3 playerPosition)
     {
-        var playerCell = grid.WorldToCell(playerPosition);
-        return playerCell.x - 1 <= Position.x && Position.x <= playerCell.x + 1 && playerCell.y - 1 <= Position.y && Position.y <= playerCell.y + 1;
+        return false;
     }
 }
