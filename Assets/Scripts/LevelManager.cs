@@ -93,6 +93,8 @@ public class LevelManager : MonoBehaviour
         gamePlayer.transform.position = gamePlayer.respawnPoint;
         playerhealth.currentHealth = 3;
         playerhealth.gameObject.GetComponent<PlayerMovement>().enabled = true;
+        gamePlayer.immune = false;
+        gamePlayer.StopAllCoroutines();
 
         if (firstSectionEnemies.Count > 0) {
             firstSectionEnemies[0].grid.ResetGrid();
