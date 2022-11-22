@@ -25,6 +25,7 @@ public class PlayerHealth : MonoBehaviour
         if (currentHealth <= 0) 
         {
             playerMovement.enabled = false;
+            playerMovement.Stop();
             //swordSwing.enabled = false;
             levelManager.GameOver();
 
