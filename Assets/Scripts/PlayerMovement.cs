@@ -144,6 +144,10 @@ public class PlayerMovement : MonoBehaviour
             playerHealth.Heal(3);
             Instantiate(healParticle, this.transform.position, this.transform.rotation);
             other.gameObject.SetActive(false);
+            var audio = gameObject.GetComponent<PlayerAudio>();
+            if (audio) {
+                audio.PlayCollectSound(transform.position);
+            }
         }
     }
     private IEnumerator Invulnerability()
