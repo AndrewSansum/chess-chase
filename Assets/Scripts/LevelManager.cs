@@ -44,11 +44,28 @@ public class LevelManager : MonoBehaviour
 
     public void GameOver() {
         gameOverScreen.gameObject.SetActive(true);
+        foreach (var enemy in firstSectionEnemies)
+        {
+            enemy.Disable();
+        }
+        foreach (var enemy in secondSectionEnemies)
+        {
+            enemy.Disable();
+        }
     }
     
     public void LevelComplete() {
         if (!gameOverScreen.isActiveAndEnabled) {
             levelCompleteScreen.gameObject.SetActive(true);
+            playerhealth.LevelComplete();
+            foreach (var enemy in firstSectionEnemies)
+            {
+                enemy.Disable();
+            }
+            foreach (var enemy in secondSectionEnemies)
+            {
+                enemy.Disable();
+            }
         }
     }
 

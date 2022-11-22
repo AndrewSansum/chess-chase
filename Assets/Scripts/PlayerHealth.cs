@@ -24,7 +24,6 @@ public class PlayerHealth : MonoBehaviour
 
         if (currentHealth <= 0) 
         {
-            playerMovement.enabled = false;
             playerMovement.Stop();
             //swordSwing.enabled = false;
             levelManager.GameOver();
@@ -32,6 +31,11 @@ public class PlayerHealth : MonoBehaviour
             // Death Animation?
             // Game over screen?
         }
+    }
+
+    public void LevelComplete() {
+        playerMovement.Stop();
+        playerMovement.enabled = false;
     }
 
     public void Heal(int amount)
