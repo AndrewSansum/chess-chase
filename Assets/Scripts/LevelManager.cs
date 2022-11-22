@@ -127,7 +127,7 @@ public class LevelManager : MonoBehaviour
     {
         cpSR.sprite = blockEnabled;
         cpSRCollider.enabled = true;
-
+        musicManager.PlayCalmMusic();
         foreach (var enemy in firstSectionEnemies)
         {
             enemy.Disable();
@@ -135,10 +135,10 @@ public class LevelManager : MonoBehaviour
     }
 
     public void Blockpoint()
-    {
+    {   
         bpSR.sprite = blockEnabled;
         bpSRCollider.enabled = true;
-
+        musicManager.PlayGameMusic();
         foreach (var enemy in secondSectionEnemies) {
             enemy.Enable();
         }
