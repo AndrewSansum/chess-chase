@@ -317,7 +317,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SR: {fileID: 221725351}
   doorOpenSprite: {fileID: 2022239272, guid: d7608cb259122df46840ce95dd10cb15, type: 3}
-  NextScene: 5
+  NextScene: 6
   DoorDistance: 1
 --- !u!1 &255277272
 GameObject:
